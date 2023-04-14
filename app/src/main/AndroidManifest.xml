@@ -10,8 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Palliativecareapp">
         <activity
+<<<<<<< HEAD
+            android:name=".SignInActivity"
+            android:exported="false" />
+=======
             android:name=".MainActivity2"
             android:exported="true" />
+>>>>>>> 53bf1b734b486c669398ffba55a3ffe68625f7ec
         <activity
             android:name=".MainActivity"
             android:exported="true">
