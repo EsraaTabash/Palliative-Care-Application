@@ -19,6 +19,7 @@ class SignupType : AppCompatActivity() {
         }
         DoctorBtn.setOnClickListener {
             val i = Intent (this,SignupPart1::class.java)
-            i.putExtra("id",1)      }
+            i.putExtra("id",1)
+        }
         }
     }
