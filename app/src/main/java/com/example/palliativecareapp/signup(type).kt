@@ -3,10 +3,12 @@ package com.example.palliativecareapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class MainActivity : AppCompatActivity() {
+class SignupType : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_signup_type)
+        //hide action bar
+        supportActionBar?.hide()
 
+        }
     }
-}
