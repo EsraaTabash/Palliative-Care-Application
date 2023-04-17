@@ -68,8 +68,8 @@ class Login : AppCompatActivity() {
                email.error = "يوجد خطا في الايميل"
                email.requestFocus()
        }else if(list.filter { it.password == password.text.toString() }.size >1){
-               email.error = "يوجد خطا في كلمة المرور"
-               email.requestFocus()
+               password.error = "يوجد خطا في كلمة المرور"
+               password.requestFocus()
        }else if(list.filter { it.email == email.text.toString() }.isEmpty()){
                email.error = "هذا ايميل غير مسجل من قبل"
                email.requestFocus()
