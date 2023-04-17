@@ -40,6 +40,7 @@ class Login : AppCompatActivity() {
                 for (document in result) {
                     list.add(
                         User(
+                            id = document.getDouble("id")?.toInt(),
                             email = document.getString("email"),
                             password =  document.getString("password"),
                         )
@@ -77,7 +78,11 @@ class Login : AppCompatActivity() {
                password.error = "كلمة المرور خاطئة"
                password.requestFocus()
            }else{
-           loginUser(email.text.toString(),password.text.toString())
+               var objList = list.filter { it.email == email.text.toString()&& it.password == password.text.toString()}
+               var objId = objList[0].id
+
+                   loginUser(objId!!,email.text.toString(),password.text.toString())
+
            }
        }
 
@@ -88,14 +93,19 @@ class Login : AppCompatActivity() {
 
     }
 
-     fun loginUser(email: String, pass: String) {
+     fun loginUser(id:Int, email: String, pass: String) {
         auth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
                 //val user = auth.currentUser
                 Log.d("tag", "signinUser:Success")
                 Toast.makeText(this, "Authentication sucess.", Toast.LENGTH_SHORT).show()
-                var i = Intent(this, Home::class.java)
-                startActivity(i)
+                if (id == 0) {
+                    var i = Intent(this, PatientHome::class.java)
+                    startActivity(i)
+                }else if(id == 1) {
+                    var i = Intent(this, DoctorHome::class.java)
+                    startActivity(i)
+                }
             } else {
                 Log.d("tag", "signinUserWithEmail:failure", task.exception)
                 Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()

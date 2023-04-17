@@ -1,7 +1,7 @@
 package com.example.palliativecareapp.Models
 
 data class User(
-    var id: Int? = 0,
+    var id: Int? ,
     var firstName: String? = "",
    var middleName: String? = "",
     var lastName: String? = "",
