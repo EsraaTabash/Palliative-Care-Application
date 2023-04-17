@@ -1,0 +1,13 @@
+package com.example.palliativecareapp.Models
+
+data class User(
+    var id: Int? = 0,
+    var firstName: String? = "",
+   var middleName: String? = "",
+    var lastName: String? = "",
+    var address: String? = "",
+    var phone: String? = "",
+    var birthday: String? = "",
+    var email: String?,
+    var password: String?,
+    )

@@ -12,11 +12,4 @@
             </corners>
         </shape>
     </item>
-
-    <item android:state_selected="true">
-        <shape>
-            <corners android:radius="500dp">
-            </corners>
-        </shape>
-    </item>
 </selector>

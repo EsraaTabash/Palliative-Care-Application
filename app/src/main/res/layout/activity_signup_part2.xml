@@ -5,17 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="40dp"
-    tools:context=".SignupPart1">
+    tools:context=".SignupPart2">
 
     <EditText
-        android:id="@+id/signupFirstName"
+        android:id="@+id/signupAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@drawable/custom_input"
         android:fontFamily="@font/baloo_bhaijaan_regular"
-        android:hint="الاسم الأول"
-        android:inputType="textPersonName"
+        android:hint="العنوان"
         android:padding="10dp"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,37 +22,40 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
-        android:id="@+id/signupMiddleName"
+        android:id="@+id/signupPhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/custom_input"
         android:padding="10dp"
-        android:hint="الاسم الأوسط"
-        android:inputType="textPersonName"
+        android:hint="رقم الهاتف"
+        android:inputType="number"
         android:fontFamily="@font/baloo_bhaijaan_regular"
         android:textSize="20dp"
         android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signupFirstName" />
+        app:layout_constraintTop_toBottomOf="@+id/signupAddress" />
 
-    <EditText
-        android:id="@+id/signupLastName"
+    <TextView
+        android:id="@+id/signupBirthday"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/custom_input"
-        android:padding="10dp"
-        android:hint="الاسم الأخير"
-        android:inputType="textPersonName"
-        android:fontFamily="@font/baloo_bhaijaan_regular"
-        android:textSize="20dp"
         android:layout_marginTop="40dp"
+        android:background="@drawable/custom_input"
+        android:fontFamily="@font/baloo_bhaijaan_regular"
+        android:hint="تاريخ الميلاد"
+        android:layoutDirection="ltr"
+        android:onClick="openDatePicker"
+        style="?android:spinnerStyle"
+        android:padding="10dp"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.88"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signupMiddleName" />
+        app:layout_constraintTop_toBottomOf="@+id/signupPhone" />
 
     <Button
-        android:id="@+id/nextButton"
+        android:id="@+id/nextButton2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/gradient_btn"
@@ -63,7 +65,7 @@
         android:fontFamily="@font/baloo_bhaijaan_bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signupLastName" />
+        app:layout_constraintTop_toBottomOf="@+id/signupBirthday" />
 
     <ImageView
         android:id="@+id/imageView"

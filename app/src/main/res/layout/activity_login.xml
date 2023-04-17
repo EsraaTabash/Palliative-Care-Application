@@ -5,17 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="40dp"
-    tools:context=".SignupPart1">
+    tools:context=".Login">
 
     <EditText
-        android:id="@+id/signupFirstName"
+        android:id="@+id/signinEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@drawable/custom_input"
         android:fontFamily="@font/baloo_bhaijaan_regular"
-        android:hint="الاسم الأول"
-        android:inputType="textPersonName"
+        android:hint="الايميل"
+        android:inputType="textEmailAddress"
         android:padding="10dp"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,47 +23,32 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
-        android:id="@+id/signupMiddleName"
+        android:id="@+id/signinPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/custom_input"
-        android:padding="10dp"
-        android:hint="الاسم الأوسط"
-        android:inputType="textPersonName"
-        android:fontFamily="@font/baloo_bhaijaan_regular"
-        android:textSize="20dp"
         android:layout_marginTop="40dp"
+        android:background="@drawable/custom_input"
+        android:fontFamily="@font/baloo_bhaijaan_regular"
+        android:hint="كلمة المرور"
+        android:inputType="textVisiblePassword"
+        android:padding="10dp"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signupFirstName" />
-
-    <EditText
-        android:id="@+id/signupLastName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/custom_input"
-        android:padding="10dp"
-        android:hint="الاسم الأخير"
-        android:inputType="textPersonName"
-        android:fontFamily="@font/baloo_bhaijaan_regular"
-        android:textSize="20dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signupMiddleName" />
+        app:layout_constraintTop_toBottomOf="@+id/signinEmail" />
 
     <Button
-        android:id="@+id/nextButton"
+        android:id="@+id/signinButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/gradient_btn"
-        android:text="التالي"
-        android:textSize="24dp"
         android:layout_marginTop="40dp"
+        android:background="@drawable/gradient_btn"
         android:fontFamily="@font/baloo_bhaijaan_bold"
+        android:text="تسجيل دخول "
+        android:textSize="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signupLastName" />
+        app:layout_constraintTop_toBottomOf="@+id/signinPassword" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -74,4 +59,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/baloo_bhaijaan_regular"
+        android:hint="هل تريد انشـــاء حســاب جديـــد؟"
+        android:padding="10dp"
+        android:textSize="15dp"
+        android:layout_marginTop="90dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signinButton" />
+
+    <TextView
+        android:id="@+id/signupButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradient_btn"
+        android:fontFamily="@font/baloo_bhaijaan_bold"
+        android:paddingVertical="10dp"
+        android:text="انشــاء حســاب"
+        android:textColor="@color/teal_300"
+        android:layout_marginTop="90dp"
+        android:textSize="15dp"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/signinButton" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

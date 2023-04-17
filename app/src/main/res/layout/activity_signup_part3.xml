@@ -5,17 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="40dp"
-    tools:context=".SignupPart1">
+    tools:context=".SignupPart3">
+
 
     <EditText
-        android:id="@+id/signupFirstName"
+        android:id="@+id/signupEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@drawable/custom_input"
         android:fontFamily="@font/baloo_bhaijaan_regular"
-        android:hint="الاسم الأول"
-        android:inputType="textPersonName"
+        android:hint="الايميل"
+        android:inputType="textEmailAddress"
         android:padding="10dp"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,47 +24,47 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
-        android:id="@+id/signupMiddleName"
+        android:id="@+id/signupPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/custom_input"
         android:padding="10dp"
-        android:hint="الاسم الأوسط"
-        android:inputType="textPersonName"
+        android:hint="كلمة المرور"
+        android:inputType="textVisiblePassword"
         android:fontFamily="@font/baloo_bhaijaan_regular"
         android:textSize="20dp"
         android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signupFirstName" />
+        app:layout_constraintTop_toBottomOf="@+id/signupEmail" />
 
     <EditText
-        android:id="@+id/signupLastName"
+        android:id="@+id/signupConfirmPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/custom_input"
         android:padding="10dp"
-        android:hint="الاسم الأخير"
-        android:inputType="textPersonName"
+        android:hint="تاكيد كلمة المرور"
+        android:inputType="textVisiblePassword"
         android:fontFamily="@font/baloo_bhaijaan_regular"
         android:textSize="20dp"
         android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signupMiddleName" />
+        app:layout_constraintTop_toBottomOf="@+id/signupPassword" />
 
     <Button
-        android:id="@+id/nextButton"
+        android:id="@+id/signupButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/gradient_btn"
-        android:text="التالي"
+        android:text="انشاء حساب"
         android:textSize="24dp"
         android:layout_marginTop="40dp"
         android:fontFamily="@font/baloo_bhaijaan_bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signupLastName" />
+        app:layout_constraintTop_toBottomOf="@+id/signupConfirmPassword" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -74,4 +75,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
