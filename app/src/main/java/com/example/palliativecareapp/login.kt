@@ -73,7 +73,10 @@ class Login : AppCompatActivity() {
        }else if(list.filter { it.email == email.text.toString() }.isEmpty()){
                email.error = "هذا ايميل غير مسجل من قبل"
                email.requestFocus()
-       }else{
+       }else if(list.filter { it.password == password.text.toString() }.isEmpty()) {
+               password.error = "كلمة المرور خاطئة"
+               password.requestFocus()
+           }else{
            loginUser(email.text.toString(),password.text.toString())
            }
        }
