@@ -112,6 +112,36 @@ class SignupPart3 : AppCompatActivity() {
                 Log.e("TAG", "Error adding document", e)
             }
 
+        if (id == 0){
+            FBFS.collection("patient")
+                .add(user)
+                .addOnSuccessListener { documentReference ->
+                    Log.e("TAG", "DocumentSnapshot added with ID: ${documentReference.id}")
+                    Toast.makeText(this, "Firestore sucess.", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this, userUid, Toast.LENGTH_SHORT).show()
+                    var i = Intent(this, Login::class.java)
+                    startActivity(i)
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, "Firestore failed.", Toast.LENGTH_SHORT).show()
+                    Log.e("TAG", "Error adding document", e)
+                }
+        }else if (id == 1){
+            FBFS.collection("doctor")
+                .add(user)
+                .addOnSuccessListener { documentReference ->
+                    Log.e("TAG", "DocumentSnapshot added with ID: ${documentReference.id}")
+                    Toast.makeText(this, "Firestore sucess.", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this, userUid, Toast.LENGTH_SHORT).show()
+                    var i = Intent(this, Login::class.java)
+                    startActivity(i)
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, "Firestore failed.", Toast.LENGTH_SHORT).show()
+                    Log.e("TAG", "Error adding document", e)
+                }
+        }
+
     }
 
     private fun createUser(email: String, pass: String) {
