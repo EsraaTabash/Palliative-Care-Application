@@ -40,9 +40,9 @@ class Login : AppCompatActivity() {
                 for (document in result) {
                     list.add(
                         User(
-                            id = document.getDouble("id")?.toInt(),
-                            email = document.getString("email"),
-                            password =  document.getString("password"),
+                            id = document.getDouble("id")!!.toInt(),
+                            email = document.getString("email").toString(),
+                            password =  document.getString("password").toString(),
                         )
                     )
                 }
@@ -80,8 +80,7 @@ class Login : AppCompatActivity() {
            }else{
                var objList = list.filter { it.email == email.text.toString()&& it.password == password.text.toString()}
                var objId = objList[0].id
-
-                   loginUser(objId!!,email.text.toString(),password.text.toString())
+               loginUser(objId!!,email.text.toString(),password.text.toString())
 
            }
        }

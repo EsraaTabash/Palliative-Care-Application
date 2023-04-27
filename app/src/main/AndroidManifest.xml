@@ -10,6 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Palliativecareapp">
         <activity
+            android:name=".screens.chat.MessagingPatient"
+            android:exported="false" />
+        <activity
+            android:name=".screens.chat.MessagingDoctor"
+            android:exported="false" />
+        <activity
+            android:name=".screens.chat.DoctorChat"
+            android:exported="true" />
+        <activity
+            android:name=".screens.chat.PatientChat"
+            android:exported="true" />
+        <activity
             android:name=".DoctorHome"
             android:exported="true" />
         <activity
@@ -23,7 +35,7 @@
             android:exported="true" />
         <activity
             android:name=".SignupPart2"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".SignupPart1"
             android:exported="true" />
