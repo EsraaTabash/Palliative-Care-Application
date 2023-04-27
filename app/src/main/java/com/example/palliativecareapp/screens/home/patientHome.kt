@@ -15,7 +15,7 @@ class PatientHome : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.caht,menu)
+        menuInflater.inflate(R.menu.action_bar,menu)
         return super.onCreateOptionsMenu(menu)
     }
 
