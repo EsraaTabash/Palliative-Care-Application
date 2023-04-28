@@ -11,9 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.palliativecareapp.Models.Adapters.AllDoctorsChatAdapter
 import com.example.palliativecareapp.Models.User
-import com.example.palliativecareapp.Models.UserMessagingData
 import com.example.palliativecareapp.R
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions

@@ -47,9 +47,8 @@ class Login : AppCompatActivity() {
                     )
                 }
                 list.forEach{
-                    Toast.makeText(this,"email : ${it.email}", Toast.LENGTH_SHORT).show()
-                    Toast.makeText(this,"password : ${it.password}", Toast.LENGTH_SHORT).show()
-
+                    //Toast.makeText(this,"email : ${it.email}", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this,"password : ${it.password}", Toast.LENGTH_SHORT).show()
                 }
             }
             .addOnFailureListener { exception ->
