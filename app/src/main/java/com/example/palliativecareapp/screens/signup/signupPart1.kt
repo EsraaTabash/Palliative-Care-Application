@@ -13,7 +13,7 @@ class SignupPart1 : AppCompatActivity() {
         setContentView(R.layout.activity_signup_part1)
         supportActionBar?.hide()
         val userId = intent.getIntExtra("id", 2)
-        Toast.makeText(this, userId.toString(), Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this, userId.toString(), Toast.LENGTH_SHORT).show()
         var firstName = findViewById<EditText>(R.id.signupFirstName)
         var middleName = findViewById<EditText>(R.id.signupMiddleName)
         var lastName = findViewById<EditText>(R.id.signupLastName)

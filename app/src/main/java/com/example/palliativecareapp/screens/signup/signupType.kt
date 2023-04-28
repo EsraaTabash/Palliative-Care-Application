@@ -24,13 +24,13 @@ class SignupType : AppCompatActivity() {
         PatientBtn.setOnClickListener {
             val i = Intent (this,SignupPart1::class.java)
             i.putExtra("id",0)
-            Toast.makeText(this, "patient", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this, "patient", Toast.LENGTH_SHORT).show()
             startActivity(i)
         }
         DoctorBtn.setOnClickListener {
             val i = Intent (this,SignupPart1::class.java)
             i.putExtra("id",1)
-            Toast.makeText(this, "doctor", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this, "doctor", Toast.LENGTH_SHORT).show()
             startActivity(i)
         }
         loginBtn.setOnClickListener {

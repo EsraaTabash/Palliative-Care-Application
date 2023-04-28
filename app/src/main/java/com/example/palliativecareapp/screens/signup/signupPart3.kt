@@ -56,7 +56,7 @@ class SignupPart3 : AppCompatActivity() {
                 confirmPassword.requestFocus()
             } else {
                 createUser(email.text.toString(), password.text.toString())
-                Toast.makeText(this, userUid, Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this, userUid, Toast.LENGTH_SHORT).show()
                 addNewUser(
                     userId,
                     userUid,
@@ -149,7 +149,7 @@ class SignupPart3 : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(this, "Authentication success.", Toast.LENGTH_SHORT).show()
-                    Toast.makeText(this, userUid, Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this, userUid, Toast.LENGTH_SHORT).show()
                 } else {
                     Log.d("tag", "createUserWithEmail:failure", task.exception)
                     Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()
