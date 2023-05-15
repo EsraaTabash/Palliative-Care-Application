@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.palliativecareapp.Models.GroupMessage
-import com.example.palliativecareapp.Models.MessageChatData
 import com.example.palliativecareapp.R
 import com.google.firebase.auth.FirebaseAuth
 
@@ -42,6 +41,8 @@ class GroupChatAdapter(val context: Context, val messageList:ArrayList<GroupMess
         return messageList.size
     }
 
+
+
     override fun getItemViewType(position: Int): Int {
         val currentMessage = messageList[position]
         if (FirebaseAuth.getInstance().currentUser?.uid.equals(currentMessage.senderUid)){
@@ -55,15 +56,15 @@ class GroupChatAdapter(val context: Context, val messageList:ArrayList<GroupMess
         val currentMessage = messageList[position]
         if (holder.javaClass == SentViewHolder::class.java){
             val viewHolder = holder as SentViewHolder
-            viewHolder.sendMessagetxt.text = currentMessage.message.toString()
+            viewHolder.sendMessagetxt.text = currentMessage.message
         }else{
             val viewHolder = holder as ReceiveViewHolder
             viewHolder.
             group_chat_txt.text =
-                currentMessage.message.toString()
+                currentMessage.message
             viewHolder.name_group_chat_txt.text = currentMessage.senderName
             viewHolder.time_group_chat.text = currentMessage.timeStamp
-            Log.d("msg", "current msg in adapter recieve ${currentMessage.message.toString()}")
+            Log.d("msg", "current msg in adapter recieve ${currentMessage.message}")
             Log.d("msg", "current msg in adapter recieve text view ${holder.group_chat_txt.text.toString()}")
         }
     }

@@ -10,11 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.palliativecareapp.Adapters.TopicsAdapter
 import com.example.palliativecareapp.Models.Topic
 import com.example.palliativecareapp.screens.chat.DisplayUsersActivity
-import com.example.palliativecareapp.screens.chat.DoctorChat
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-//import kotlinx.android.synthetic.main.activity_doctor_home.*
+
 
 class DoctorHome : AppCompatActivity() {
     lateinit var db: FirebaseFirestore

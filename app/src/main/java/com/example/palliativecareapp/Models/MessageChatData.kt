@@ -6,3 +6,4 @@ data class MessageChatData (
     var receiverId : String ="",
     var timestamp: String=""
 )
+

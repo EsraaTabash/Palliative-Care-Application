@@ -19,9 +19,7 @@ import com.google.firebase.ktx.Firebase
 
 class SignupPart3 : AppCompatActivity() {
     lateinit var FBFS: FirebaseFirestore
-    lateinit var list: ArrayList<User>
     lateinit var auth: FirebaseAuth
-    lateinit var userUid: String
 
     lateinit var ref : DatabaseReference
      var userFirstName:String? =""
@@ -34,6 +32,7 @@ class SignupPart3 : AppCompatActivity() {
      var userAddress:String? =""
      var userMiddleName:String? =""
      var userId:Int =2
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,7 +54,7 @@ class SignupPart3 : AppCompatActivity() {
         email = findViewById<EditText>(R.id.signupEmail)
         password = findViewById<EditText>(R.id.signupPassword)
         confirmPassword = findViewById<EditText>(R.id.signupConfirmPassword)
-        var signupBtn = findViewById<Button>(R.id.signupButton)
+        val signupBtn = findViewById<Button>(R.id.signupButton)
 
         signupBtn.setOnClickListener {
             if (email.text.toString().isEmpty()) {
@@ -105,7 +104,7 @@ class SignupPart3 : AppCompatActivity() {
         email: String?,
         password: String?
     ) {
-        var user = hashMapOf(
+        val user = hashMapOf(
             "id" to id,
                 "uid" to uid,
             "firstName" to firstName,
@@ -123,7 +122,7 @@ class SignupPart3 : AppCompatActivity() {
                 Log.e("TAG", "DocumentSnapshot added with ID: ${documentReference.id}")
                 Toast.makeText(this, "Firestore sucess.", Toast.LENGTH_SHORT).show()
                 //Toast.makeText(this, userUid, Toast.LENGTH_SHORT).show()
-                var i = Intent(this, Login::class.java)
+                val i = Intent(this, Login::class.java)
                 startActivity(i)
             }
             .addOnFailureListener { e ->
@@ -138,7 +137,7 @@ class SignupPart3 : AppCompatActivity() {
                     Log.e("TAG", "DocumentSnapshot added with ID: ${documentReference.id}")
                     Toast.makeText(this, "Firestore sucess.", Toast.LENGTH_SHORT).show()
                     //Toast.makeText(this, userUid, Toast.LENGTH_SHORT).show()
-                    var i = Intent(this, Login::class.java)
+                    val i = Intent(this, Login::class.java)
                     startActivity(i)
                 }
                 .addOnFailureListener { e ->
@@ -152,7 +151,7 @@ class SignupPart3 : AppCompatActivity() {
                     Log.e("TAG", "DocumentSnapshot added with ID: ${documentReference.id}")
                     Toast.makeText(this, "Firestore sucess.", Toast.LENGTH_SHORT).show()
                     //Toast.makeText(this, userUid, Toast.LENGTH_SHORT).show()
-                    var i = Intent(this, Login::class.java)
+                    val i = Intent(this, Login::class.java)
                     startActivity(i)
                 }
                 .addOnFailureListener { e ->

@@ -4,19 +4,14 @@ import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.palliativecareapp.Adapters.UserChatAdapter
-import com.example.palliativecareapp.Models.User
 import com.example.palliativecareapp.Models.UserRef
 import com.example.palliativecareapp.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -36,11 +31,11 @@ class DisplayUsersActivity : AppCompatActivity() {
         recycler_view_display_users.layoutManager = LinearLayoutManager(this)
         val auth = Firebase.auth
         val db = Firebase.firestore
-        val ref = FirebaseDatabase.getInstance().getReference()
         val goto_group_btin = findViewById<FloatingActionButton>(R.id.goto_group_btin)
         goto_group_btin.setOnClickListener {
             startActivity(Intent(this,DisplayGroupsActivity::class.java))
         }
+
 
         progerssDialog.show()
         

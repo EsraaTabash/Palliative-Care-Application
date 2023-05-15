@@ -23,14 +23,13 @@ class GroupChatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_group_chat)
 
-        var groupName = intent.getStringExtra("groupName")
+        val groupName = intent.getStringExtra("groupName")
 
         val ref = FirebaseDatabase.getInstance().getReference()
         val uid = Firebase.auth.uid
 
         val messageList = ArrayList<GroupMessage>()
         val adapter = GroupChatAdapter(this,messageList)
-
 
         val recycler_group_chat = findViewById<RecyclerView>(R.id.recycler_group_chat)
         val edit_text_group_chat = findViewById<EditText>(R.id.edit_text_group_chat)

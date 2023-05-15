@@ -46,17 +46,19 @@ class MessageAdapter(val context: Context, val messageList:ArrayList<MessageChat
         }
     }
 
+
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val currentMessage = messageList[position]
         if (holder.javaClass == SentViewHolder::class.java){
             val viewHolder = holder as SentViewHolder
-            viewHolder.sendMessagetxt.text = currentMessage.text.toString()
+            viewHolder.sendMessagetxt.text = currentMessage.text
         }else{
             val viewHolder = holder as ReceiveViewHolder
             viewHolder.
             recieveMessagetxt.text =
-                currentMessage.text.toString()
-            Log.d("msg", "current msg in adapter recieve ${currentMessage.text.toString()}")
+                currentMessage.text
+            Log.d("msg", "current msg in adapter recieve ${currentMessage.text}")
             Log.d("msg", "current msg in adapter recieve text view ${holder.recieveMessagetxt.text.toString()}")
         }
     }
