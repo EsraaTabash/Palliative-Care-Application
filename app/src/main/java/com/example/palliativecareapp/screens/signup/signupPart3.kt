@@ -70,20 +70,7 @@ class SignupPart3 : AppCompatActivity() {
                 confirmPassword.error = "الرجاء التاكد من كتابة كلمة المرور بشكل صحيح"
                 confirmPassword.requestFocus()
             } else {
-                createUser(email.text.toString(), password.text.toString(),userId)
-                Toast.makeText(this, "button clicked", Toast.LENGTH_SHORT).show()
-//                addNewUser(
-//                    userId,
-//                    userUid,
-//                    userFirstName,
-//                    userMiddleName,
-//                    userLastName,
-//                    userAddress,
-//                    userPhone,
-//                    userBirthday,
-//                    email.text.toString(),
-//                    password.text.toString()
-//                )
+
             }
         }
 
@@ -168,7 +155,6 @@ class SignupPart3 : AppCompatActivity() {
                 if (task.isSuccessful) {
                     addUserToDatabase("$userFirstName $userLastName",email,auth.currentUser?.uid!!,id)
                     Toast.makeText(this, "Authentication success.", Toast.LENGTH_SHORT).show()
-                    addNewUser(id,auth.currentUser?.uid!!,userFirstName,userMiddleName,userLastName,userAddress,userPhone,userBirthday,email,pass)
 
                     //Toast.makeText(this, userUid, Toast.LENGTH_SHORT).show()
                 } else {

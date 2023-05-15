@@ -13,23 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Palliativecareapp">
 
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-6411473233287336~9155232802" />
-
-
-        <activity
-            android:name=".screens.chat.DisplayGroupsActivity"
-            android:exported="true" />
-        <activity
-            android:name=".screens.chat.GroupChatActivity"
-            android:exported="true" />
-        <activity
-            android:name=".screens.chat.DisplayUsersActivity"
-            android:exported="true" />
-        <activity
-            android:name=".screens.chat.ChatActivity"
-            android:exported="true" />
 
 
         <activity

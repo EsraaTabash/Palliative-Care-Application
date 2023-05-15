@@ -9,10 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.palliativecareapp.Adapters.TopicsAdapter
 import com.example.palliativecareapp.Models.Topic
-import com.example.palliativecareapp.screens.chat.DisplayUsersActivity
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 
 
 class DoctorHome : AppCompatActivity() {
@@ -26,7 +22,7 @@ class DoctorHome : AppCompatActivity() {
         setContentView(R.layout.activity_doctor_home)
         db = Firebase.firestore
         list = ArrayList()
-        progress = findViewById(R.id.progressTopic)
+
         progress.visibility = View.VISIBLE
         db.collection("topics")
             .get()
@@ -62,4 +58,4 @@ class DoctorHome : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-}
+
