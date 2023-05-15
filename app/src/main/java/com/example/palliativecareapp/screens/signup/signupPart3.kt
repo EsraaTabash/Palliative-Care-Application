@@ -7,8 +7,11 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.example.palliativecareapp.Models.UserRef
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.auth.User
 import com.google.firebase.firestore.ktx.firestore
@@ -20,25 +23,38 @@ class SignupPart3 : AppCompatActivity() {
     lateinit var auth: FirebaseAuth
     lateinit var userUid: String
 
+    lateinit var ref : DatabaseReference
+     var userFirstName:String? =""
+     var userLastName:String? =""
+    lateinit var password:EditText
+     lateinit var email:EditText
+    lateinit var confirmPassword:EditText
+     var userBirthday:String? =""
+     var userPhone:String? =""
+     var userAddress:String? =""
+     var userMiddleName:String? =""
+     var userId:Int =2
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup_part3)
         FBFS = Firebase.firestore
         auth = Firebase.auth
-        list = ArrayList()
-        userUid = auth.currentUser?.uid.toString()
+//
+//        list = ArrayList()
+////        userUid = auth.currentUser?.uid.toString()
         supportActionBar?.hide()
-        val userId = intent.getIntExtra("id", 2)
-        val userFirstName = intent.getStringExtra("firstName")
-        val userMiddleName = intent.getStringExtra("middleName")
-        val userLastName = intent.getStringExtra("lastName")
-        val userAddress = intent.getStringExtra("address")
-        val userPhone = intent.getStringExtra("phone")
-        val userBirthday = intent.getStringExtra("birthday")
-        var email = findViewById<EditText>(R.id.signupEmail)
-        var password = findViewById<EditText>(R.id.signupPassword)
-        var confirmPassword = findViewById<EditText>(R.id.signupConfirmPassword)
+        userId = intent.getIntExtra("id", 2)
+         userFirstName = intent.getStringExtra("firstName")
+        userMiddleName = intent.getStringExtra("middleName")
+         userLastName = intent.getStringExtra("lastName")
+        userAddress = intent.getStringExtra("address")
+        userPhone = intent.getStringExtra("phone")
+        userBirthday = intent.getStringExtra("birthday")
+        email = findViewById<EditText>(R.id.signupEmail)
+        password = findViewById<EditText>(R.id.signupPassword)
+        confirmPassword = findViewById<EditText>(R.id.signupConfirmPassword)
         var signupBtn = findViewById<Button>(R.id.signupButton)
 
         signupBtn.setOnClickListener {
@@ -55,22 +71,25 @@ class SignupPart3 : AppCompatActivity() {
                 confirmPassword.error = "الرجاء التاكد من كتابة كلمة المرور بشكل صحيح"
                 confirmPassword.requestFocus()
             } else {
-                createUser(email.text.toString(), password.text.toString())
-                Toast.makeText(this, userUid, Toast.LENGTH_SHORT).show()
-                addNewUser(
-                    userId,
-                    userUid,
-                    userFirstName,
-                    userMiddleName,
-                    userLastName,
-                    userAddress,
-                    userPhone,
-                    userBirthday,
-                    email.text.toString(),
-                    password.text.toString()
-                )
+                createUser(email.text.toString(), password.text.toString(),userId)
+                Toast.makeText(this, "button clicked", Toast.LENGTH_SHORT).show()
+//                addNewUser(
+//                    userId,
+//                    userUid,
+//                    userFirstName,
+//                    userMiddleName,
+//                    userLastName,
+//                    userAddress,
+//                    userPhone,
+//                    userBirthday,
+//                    email.text.toString(),
+//                    password.text.toString()
+//                )
             }
         }
+
+//        signUp("$userFirstName $userLastName", email.text.toString(),password.text.toString())
+
 
     }
 
@@ -144,16 +163,29 @@ class SignupPart3 : AppCompatActivity() {
 
     }
 
-    private fun createUser(email: String, pass: String) {
+    private fun createUser(email: String, pass: String,id: Int) {
         auth.createUserWithEmailAndPassword(email, pass)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
+                    addUserToDatabase("$userFirstName $userLastName",email,auth.currentUser?.uid!!,id)
                     Toast.makeText(this, "Authentication success.", Toast.LENGTH_SHORT).show()
-                    Toast.makeText(this, userUid, Toast.LENGTH_SHORT).show()
+                    addNewUser(id,auth.currentUser?.uid!!,userFirstName,userMiddleName,userLastName,userAddress,userPhone,userBirthday,email,pass)
+
+                    //Toast.makeText(this, userUid, Toast.LENGTH_SHORT).show()
                 } else {
                     Log.d("tag", "createUserWithEmail:failure", task.exception)
                     Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()
                 }
             }
     }
+
+
+
+
+    private fun addUserToDatabase(name:String,email:String,uid:String,id:Int){
+        ref = FirebaseDatabase.getInstance().getReference()
+        ref.child("user").child(uid).setValue(UserRef(name,email,uid,id))
+    }
+
+
 }

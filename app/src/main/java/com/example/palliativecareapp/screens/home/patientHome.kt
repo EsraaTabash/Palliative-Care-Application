@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import com.example.palliativecareapp.screens.chat.DisplayUsersActivity
 import com.example.palliativecareapp.screens.chat.PatientChat
 
 class PatientHome : AppCompatActivity() {
@@ -21,7 +22,7 @@ class PatientHome : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            R.id.message -> startActivity(Intent(this,PatientChat::class.java))
+            R.id.message -> startActivity(Intent(this,DisplayUsersActivity::class.java))
         }
         return super.onOptionsItemSelected(item)
     }

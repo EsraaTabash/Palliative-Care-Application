@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.palliativecareapp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FUL" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo"
@@ -10,11 +13,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Palliativecareapp">
         <activity
-            android:name=".screens.chat.MessagingPatient"
+            android:name=".screens.signup.MysignupPart3Activity"
             android:exported="false" />
         <activity
-            android:name=".screens.chat.MessagingDoctor"
+            android:name=".screens.chat.DisplayGroupsActivity"
             android:exported="false" />
+        <activity
+            android:name=".screens.chat.GroupChatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".screens.chat.DisplayUsersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".screens.chat.ChatActivity"
+            android:exported="false" />
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-6411473233287336~9155232802" />
+
         <activity
             android:name=".screens.chat.DoctorChat"
             android:exported="true" />
