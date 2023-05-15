@@ -9,11 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.palliativecareapp.Adapters.TopicsAdapter
 import com.example.palliativecareapp.Models.Topic
-import com.example.palliativecareapp.screens.chat.DoctorChat
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_doctor_home.*
+
 
 class DoctorHome : AppCompatActivity() {
     lateinit var db: FirebaseFirestore
@@ -26,7 +22,7 @@ class DoctorHome : AppCompatActivity() {
         setContentView(R.layout.activity_doctor_home)
         db = Firebase.firestore
         list = ArrayList()
-        progress = progressTopic
+
         progress.visibility = View.VISIBLE
         db.collection("topics")
             .get()
@@ -58,8 +54,8 @@ class DoctorHome : AppCompatActivity() {
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            R.id.message -> startActivity(Intent(this, DoctorChat::class.java))
+            R.id.message -> startActivity(Intent(this, DisplayUsersActivity::class.java))
         }
         return super.onOptionsItemSelected(item)
     }
-}
+

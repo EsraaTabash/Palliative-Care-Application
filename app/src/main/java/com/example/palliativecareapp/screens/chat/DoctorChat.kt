@@ -1,27 +1,17 @@
 package com.example.palliativecareapp.screens.chat
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.palliativecareapp.Models.User
+
 import com.example.palliativecareapp.R
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class DoctorChat : AppCompatActivity() {
 
-    lateinit var adapterui: FirestoreRecyclerAdapter<User,DoctorViewHolder>
+//    lateinit var adapterui: FirestoreRecyclerAdapter<User,DoctorViewHolder>
     lateinit var db:FirebaseFirestore
     lateinit var recPatientChat:RecyclerView
 
@@ -29,7 +19,7 @@ class DoctorChat : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_doctor_chat)
 
-         recPatientChat = findViewById<RecyclerView>(R.id.recDoctorChat)
+         recPatientChat = findViewById<RecyclerView>(R.id.recycler_view_chat)
 
          db = Firebase.firestore
 //
@@ -91,11 +81,11 @@ class DoctorChat : AppCompatActivity() {
 
     }
 
-    class DoctorViewHolder(view: View):RecyclerView.ViewHolder(view){
-        var name = view.findViewById<TextView>(R.id.txtMsgDoctorName)
-        var img = view.findViewById<ImageView>(R.id.user_chat_img)
-
-    }
+//    class DoctorViewHolder(view: View):RecyclerView.ViewHolder(view){
+//        var name = view.findViewById<TextView>(R.id.txtMsgDoctorName)
+//        var img = view.findViewById<ImageView>(R.id.user_chat_img)
+//
+//    }
 //
 //    override fun onStart() {
 //        super.onStart()
