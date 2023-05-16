@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/teal_100"
+    android:orientation="vertical"
+    tools:context=".screens.operations.UpdateTopic">
+    <androidx.cardview.widget.CardView
+        android:padding="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:elevation="20dp"
+        app:cardCornerRadius="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_input"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/baloo_bhaijaan_regular"
+                android:text="تعديـــل بيانـات"
+                android:textAlignment="center"
+                android:textColor="@color/teal_400"
+                android:textSize="20sp" />
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/updateImage"
+                    app:strokeColor="@color/teal_100"
+                    app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+                    android:layout_height="250dp"
+                    android:src="@drawable/ic_launcher_background"
+                    android:layout_width="350dp"/>
+
+                <ImageView
+                    android:id="@+id/iconUpdateImage"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="8dp"
+                    android:src="@drawable/ic_baseline_edit_24" />
+            </FrameLayout>
+
+            <EditText
+                android:id="@+id/updateName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_input"
+                android:fontFamily="@font/baloo_bhaijaan_bold"
+                android:gravity="start|center_vertical"
+                android:hint="اســم المــوضوع "
+                android:padding="10dp"
+                android:textColor="#FFAAAAAA"
+                android:textSize="18dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+            <EditText
+                android:id="@+id/updateDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_input"
+                android:fontFamily="@font/baloo_bhaijaan_regular"
+                android:gravity="start|center_vertical"
+                android:hint="وصـف المــوضوع "
+                android:padding="10dp"
+                android:textColor="#FFAAAAAA"
+                android:textSize="16dp"
+                android:inputType="textMultiLine"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+            <EditText
+                android:id="@+id/updateContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_input"
+                android:fontFamily="@font/baloo_bhaijaan_regular"
+                android:gravity="start|center_vertical"
+                android:hint="محتـــوى المــوضوع "
+                android:inputType="textMultiLine"
+                android:padding="10dp"
+                android:textColor="#FFAAAAAA"
+                android:textSize="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+            <Button
+                android:id="@+id/updateButton"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/baloo_bhaijaan_regular"
+                android:text="تحديـــث"
+                android:textSize="18sp"
+                app:cornerRadius="30dp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.core.widget.NestedScrollView>
