@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.palliativecareapp.Adapters.TopicsAdapter
 import com.example.palliativecareapp.Models.Topic
+
 import com.example.palliativecareapp.screens.chat.DoctorChat
 import com.example.palliativecareapp.screens.operations.AddTopic
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -20,6 +21,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.database.DatabaseError
+
 
 import com.google.firebase.database.DataSnapshot
 
@@ -129,6 +131,10 @@ class DoctorHome : AppCompatActivity(),RefreshListener,TopicLoadListener{
             }
     }
     private fun loadTopicsFromFirebase() {
+
+        list = ArrayList()
+
+        progress.visibility = View.VISIBLE
         db.collection("topics")
             .get()
             .addOnSuccessListener { result ->
@@ -172,6 +178,7 @@ class DoctorHome : AppCompatActivity(),RefreshListener,TopicLoadListener{
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
+
             R.id.logout -> startActivity(Intent(this, Login::class.java))
             R.id.message -> startActivity(Intent(this, DoctorChat::class.java))
             R.id.sort -> {
@@ -209,3 +216,9 @@ class DoctorHome : AppCompatActivity(),RefreshListener,TopicLoadListener{
     }
 
 }
+
+            R.id.message -> startActivity(Intent(this, DisplayUsersActivity::class.java))
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
