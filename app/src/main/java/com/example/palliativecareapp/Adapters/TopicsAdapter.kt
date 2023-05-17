@@ -107,6 +107,7 @@ class TopicsAdapter(var activity: Activity, var data: ArrayList<Topic>, private 
             intent.putExtra("Description", data[position].Description)
             intent.putExtra("Name", data[position].Name)
             intent.putExtra("Content", data[position].Content)
+            intent.putExtra("topic",data[position])
             activity.startActivity(intent)
         }
 
