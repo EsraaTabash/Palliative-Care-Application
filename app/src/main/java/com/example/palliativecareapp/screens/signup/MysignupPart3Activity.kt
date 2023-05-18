@@ -44,10 +44,10 @@ class MysignupPart3Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup_part3_my)
-         signupEmail=findViewById<EditText>(R.id.signupEmail)
-        signupPassword=findViewById<EditText>(R.id.signupPassword)
-        signupConfirmPassword=findViewById<EditText>(R.id.signupConfirmPassword)
-        signupButton=findViewById(R.id.signupButton)
+//         signupEmail=findViewById<EditText>(R.id.signupEmail)
+//        signupPassword=findViewById<EditText>(R.id.signupPassword)
+//        signupConfirmPassword=findViewById<EditText>(R.id.signupConfirmPassword)
+//        signupButton=findViewById(R.id.signupButton)
 
         firestordb = Firebase.firestore
         realtimedb = FirebaseDatabase.getInstance()
@@ -68,7 +68,7 @@ class MysignupPart3Activity : AppCompatActivity() {
 
 
 
-        signupButton.setOnClickListener {
+//        signupButton.setOnClickListener {
 //            Log.e("aa","the id is $id")
 //            Log.e("aa"," email and pass and id$email $password $id")
 //            if (signupEmail.text.isEmpty() || signupPassword.text.isEmpty()){
@@ -83,19 +83,19 @@ class MysignupPart3Activity : AppCompatActivity() {
 //            Toast.makeText(this, "button clicked", Toast.LENGTH_SHORT).show()
 
 
-            if (signupEmail.text.toString().isEmpty()) {
-                signupEmail.error = "الرجاء تعبئة هذا الحقل"
-                signupEmail.requestFocus()
-            } else if (signupPassword.text.toString().isEmpty()) {
-                signupPassword.error = "الرجاء تعبئة هذا الحقل"
-                signupPassword.requestFocus()
-            } else if (signupConfirmPassword.text.toString().isEmpty()) {
-                signupConfirmPassword.error = "الرجاء تعبئة هذا الحقل"
-                signupConfirmPassword.requestFocus()
-            } else if (signupPassword.text.toString() != signupConfirmPassword.text.toString()) {
-                signupConfirmPassword.error = "الرجاء التاكد من كتابة كلمة المرور بشكل صحيح"
-                signupConfirmPassword.requestFocus()
-            } else {
+//            if (signupEmail.text.toString().isEmpty()) {
+//                signupEmail.error = "الرجاء تعبئة هذا الحقل"
+//                signupEmail.requestFocus()
+//            } else if (signupPassword.text.toString().isEmpty()) {
+//                signupPassword.error = "الرجاء تعبئة هذا الحقل"
+//                signupPassword.requestFocus()
+//            } else if (signupConfirmPassword.text.toString().isEmpty()) {
+//                signupConfirmPassword.error = "الرجاء تعبئة هذا الحقل"
+//                signupConfirmPassword.requestFocus()
+//            } else if (signupPassword.text.toString() != signupConfirmPassword.text.toString()) {
+//                signupConfirmPassword.error = "الرجاء التاكد من كتابة كلمة المرور بشكل صحيح"
+//                signupConfirmPassword.requestFocus()
+//            } else {
 
 
 //                auth.createUserWithEmailAndPassword(
@@ -134,10 +134,10 @@ class MysignupPart3Activity : AppCompatActivity() {
 //                        }
 //                    }
 
-                createUser(signupEmail.text.toString(),signupPassword.text.toString(),id)
+//                createUser(signupEmail.text.toString(),signupPassword.text.toString(),id)
 
-            }
-        }
+//            }
+//        }
         }
 
 

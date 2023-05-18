@@ -23,9 +23,9 @@ class MessagingPatient : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_messaging_patient)
 
-        val messagesRecyclerView = findViewById<RecyclerView>(R.id.recPatientChat)
-        val messageEditText = findViewById<EditText>(R.id.edtPatientChat)
-        val sendButton = findViewById<FloatingActionButton>(R.id.btnPatientChat)
+//        val messagesRecyclerView = findViewById<RecyclerView>(R.id.recPatientChat)
+//        val messageEditText = findViewById<EditText>(R.id.edtPatientChat)
+//        val sendButton = findViewById<FloatingActionButton>(R.id.btnPatientChat)
 
 
         val db = Firebase.firestore
@@ -43,40 +43,40 @@ class MessagingPatient : AppCompatActivity() {
         val senderUid = auth.currentUser?.uid.toString()
 
 
-        supportActionBar?.title = intent.getStringExtra("name")
+//        supportActionBar?.title = intent.getStringExtra("name")
 
 
-        Log.e("byn","doctor receiverUid $receiverUid")
-        Log.e("byn","doctor senderUid $senderUid")
+//        Log.e("byn","doctor receiverUid $receiverUid")
+//        Log.e("byn","doctor senderUid $senderUid")
 
-        sendButton.setOnClickListener{
-            val messageText = messageEditText.text.toString().trim()
+//        sendButton.setOnClickListener{
+//            val messageText = messageEditText.text.toString().trim()
+//
+//            if(messageText.isNotEmpty()){
+////                sendMessage(messageText,senderUid,receiverUid)
+//                messageEditText.setText("")
+//            }
+//
+//        }
 
-            if(messageText.isNotEmpty()){
-//                sendMessage(messageText,senderUid,receiverUid)
-                messageEditText.setText("")
-            }
-
-        }
-
-        val messageList = ArrayList<MessageChatData>()
+//        val messageList = ArrayList<MessageChatData>()
 
 
-        val messageAdapter = MessageChatAdapter(this, messageList,senderUid)
-        messagesRecyclerView.layoutManager= LinearLayoutManager(this)
-        messagesRecyclerView.adapter = messageAdapter
+//        val messageAdapter = MessageChatAdapter(this, messageList,senderUid)
+//        messagesRecyclerView.layoutManager= LinearLayoutManager(this)
+//        messagesRecyclerView.adapter = messageAdapter
 //        FirebaseDatabase.getInstance().getReference("chat")
         FirebaseDatabase.getInstance().getReference("message/$senderUid/$receiverUid")
             .addChildEventListener(object : ChildEventListener {
                 override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
 
-                    val message = snapshot.getValue(MessageChatData::class.java)
-                    if (message != null){
-                        messageList.add(message)
-                        messageAdapter.notifyItemInserted(messageList.size -1)
-                        messagesRecyclerView.scrollToPosition(messageList.size -1)
-
-                    }
+//                    val message = snapshot.getValue(MessageChatData::class.java)
+//                    if (message != null){
+//                        messageList.add(message)
+//                        messageAdapter.notifyItemInserted(messageList.size -1)
+//                        messagesRecyclerView.scrollToPosition(messageList.size -1)
+//
+//                    }
 
                 }
 

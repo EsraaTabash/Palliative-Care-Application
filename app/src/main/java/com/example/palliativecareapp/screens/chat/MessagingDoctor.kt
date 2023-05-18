@@ -24,9 +24,9 @@ class MessagingDoctor : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_messaging_doctor)
 
-        val messagesRecyclerView = findViewById<RecyclerView>(R.id.recycler_view_chat)
-        val messageEditText = findViewById<EditText>(R.id.edit_text_chat)
-        val sendButton = findViewById<FloatingActionButton>(R.id.button_send_chat)
+//        val messagesRecyclerView = findViewById<RecyclerView>(R.id.recycler_view_chat)
+//        val messageEditText = findViewById<EditText>(R.id.edit_text_chat)
+//        val sendButton = findViewById<FloatingActionButton>(R.id.button_send_chat)
 
         val db = Firebase.firestore
         val auth = Firebase.auth
@@ -42,15 +42,15 @@ class MessagingDoctor : AppCompatActivity() {
         Log.e("byn","patient receiverUid $receiverUid")
         Log.e("byn","patient senderUid $senderUid")
 
-        sendButton.setOnClickListener{
-            val messageText = messageEditText.text.toString().trim()
-
-            if(messageText.isNotEmpty()){
-//                sendMessage(messageText,senderUid,receiverUid)
-                messageEditText.setText("")
-            }
-
-        }
+//        sendButton.setOnClickListener{
+//            val messageText = messageEditText.text.toString().trim()
+//
+//            if(messageText.isNotEmpty()){
+////                sendMessage(messageText,senderUid,receiverUid)
+//                messageEditText.setText("")
+//            }
+//
+//        }
 //
 //        val messageList = ArrayList<MessageChatData>()
 //        val messageAdapter = MessageChatAdapter(this, messageList,senderUid)
@@ -91,10 +91,10 @@ class MessagingDoctor : AppCompatActivity() {
 //
 //            })
 
-        val messageList = ArrayList<MessageChatData>()
-        val messageAdapter = MessageChatAdapter(this, messageList,senderUid)
-        messagesRecyclerView.layoutManager= LinearLayoutManager(this)
-        messagesRecyclerView.adapter = messageAdapter
+//        val messageList = ArrayList<MessageChatData>()
+//        val messageAdapter = MessageChatAdapter(this, messageList,senderUid)
+//        messagesRecyclerView.layoutManager= LinearLayoutManager(this)
+//        messagesRecyclerView.adapter = messageAdapter
 //        FirebaseDatabase.getInstance().getReference("chat")
 
         val ref = FirebaseDatabase.getInstance().getReference("message/$senderUid/$receiverUid")
@@ -103,14 +103,14 @@ class MessagingDoctor : AppCompatActivity() {
         ref.addChildEventListener(object : ChildEventListener {
                 override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
 
-                    val message = snapshot.getValue(MessageChatData::class.java)
-                    if (message != null){
-                        Log.e("byn","msg from ref is $message")
-                        messageList.add(message)
-                        messageAdapter.notifyItemInserted(messageList.size -1)
-                        messagesRecyclerView.scrollToPosition(messageList.size -1)
-
-                    }
+//                    val message = snapshot.getValue(MessageChatData::class.java)
+//                    if (message != null){
+//                        Log.e("byn","msg from ref is $message")
+//                        messageList.add(message)
+//                        messageAdapter.notifyItemInserted(messageList.size -1)
+//                        messagesRecyclerView.scrollToPosition(messageList.size -1)
+//
+//                    }
 
                 }
 

@@ -24,7 +24,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/receive_message"
+        android:background="@drawable/shape_message"
         android:ems="10"
         android:hint="رسالة"
         android:inputType="textPersonName"
