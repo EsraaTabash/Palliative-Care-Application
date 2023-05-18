@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "349906099145",
-    "project_id": "hayaaapp-4a036",
-    "storage_bucket": "hayaaapp-4a036.appspot.com"
+    "project_number": "1029070512478",
+    "project_id": "hayaaapp-333f3",
+    "storage_bucket": "hayaaapp-333f3.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:349906099145:android:5d599655b56e2f33862618",
+        "mobilesdk_app_id": "1:1029070512478:android:5b19a2385e5853f6c26fcf",
         "android_client_info": {
           "package_name": "com.example.palliativecareapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "349906099145-jjgvh2in39mi5fqvtu6qag33pi9t3iv0.apps.googleusercontent.com",
+          "client_id": "1029070512478-qc9ksbfqop0rr6fr82oo1lojrr2tcbe4.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAu-PWkSUCU6nk4piK0dvnJwgMBxV-8o2o"
+          "current_key": "AIzaSyCNlOyZnQCpEmAWqgsbcBDGbet23iEwKJc"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "349906099145-jjgvh2in39mi5fqvtu6qag33pi9t3iv0.apps.googleusercontent.com",
+              "client_id": "1029070512478-qc9ksbfqop0rr6fr82oo1lojrr2tcbe4.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
