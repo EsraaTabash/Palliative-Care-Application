@@ -1,15 +1,12 @@
 package com.example.palliativecareapp.Models.Adapters
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.palliativecareapp.Models.UserMessagingData
 import com.example.palliativecareapp.R
-import com.example.palliativecareapp.screens.chat.MessagingDoctor
 
 class AllDoctorsChatAdapter(val context: Context, private val data:ArrayList<UserMessagingData>):
     RecyclerView.Adapter<AllDoctorsChatAdapter.MyViewHolder>() {

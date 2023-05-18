@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <item android:id="@+id/message" android:title="msg" android:icon="@drawable/mssg" app:showAsAction="always" />
-    <item android:id="@+id/search" android:title="search" android:icon="@drawable/ic_search" app:showAsAction="always" />
-    <item android:id="@+id/logout" android:title="تسجيل خروج" app:showAsAction="never" />
+    <item android:id="@+id/message"
+        android:gravity="end"
+        android:title="msg"
+        android:icon="@drawable/mssg"
+        app:showAsAction="always" />
+    <item android:id="@+id/sort"
+        android:gravity="end"
+        android:title="sort"
+        app:showAsAction="always" />
+<!--        android:icon="@drawable/ic_baseline_sort_24"-->
+    <item android:id="@+id/logout"
+        android:gravity="end"
+        android:title="logout"
+        app:showAsAction="always" />
+<!--        android:icon="@drawable/ic_baseline_exit_to_app_24"-->
 </menu>
