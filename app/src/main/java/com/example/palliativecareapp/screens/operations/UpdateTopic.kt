@@ -99,7 +99,6 @@ class UpdateTopic : AppCompatActivity() {
                 updateData()
                 //dialog.dismiss()
                 Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
-
             }.addOnFailureListener {
                // dialog.dismiss()
             }

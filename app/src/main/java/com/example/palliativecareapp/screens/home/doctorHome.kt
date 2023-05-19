@@ -11,15 +11,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.palliativecareapp.Adapters.TopicsAdapter
 import com.example.palliativecareapp.Models.Topic
-import com.example.palliativecareapp.screens.chat.DoctorChat
+import com.example.palliativecareapp.screens.Profile
+import com.example.palliativecareapp.screens.chat.DisplayUsersActivity
+
 import com.example.palliativecareapp.screens.operations.AddTopic
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.*
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.database.DatabaseError
+
 
 import com.google.firebase.database.DataSnapshot
 
@@ -172,8 +174,11 @@ class DoctorHome : AppCompatActivity(),RefreshListener,TopicLoadListener{
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            R.id.logout -> startActivity(Intent(this, Login::class.java))
-            R.id.message -> startActivity(Intent(this, DoctorChat::class.java))
+            R.id.profile -> {
+                val i = Intent(this, Profile::class.java)
+                startActivity(i)
+            }
+            R.id.message -> startActivity(Intent(this, DisplayUsersActivity::class.java))
             R.id.sort -> {
                 val options = arrayOf("تصــاعدي","تنــازلي")
                 val dialog = AlertDialog.Builder(this, R.style.CustomAlertDialogStyle)
@@ -188,6 +193,7 @@ class DoctorHome : AppCompatActivity(),RefreshListener,TopicLoadListener{
                         }
                     }.show()
             }
+           // R.id.message -> startActivity(Intent(this, DisplayUsersActivity::class.java))
         }
         return super.onOptionsItemSelected(item)
     }

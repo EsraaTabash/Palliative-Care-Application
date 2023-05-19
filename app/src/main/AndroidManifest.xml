@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -14,6 +15,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Palliativecareapp">
+        <activity
+            android:name=".screens.operations.VideoTopic"
+            android:exported="true" />
+        <activity
+            android:name=".screens.Profile"
+            android:exported="true" />
         <activity
             android:name=".screens.operations.UpdateTopic"
             android:exported="true" />
@@ -29,10 +36,16 @@
             android:value="ca-app-pub-6411473233287336~9155232802" />
 
         <activity
-            android:name=".screens.chat.DoctorChat"
+            android:name=".screens.chat.ChatActivity"
             android:exported="true" />
         <activity
-            android:name=".screens.chat.PatientChat"
+            android:name=".screens.chat.DisplayGroupsActivity"
+            android:exported="true" />
+        <activity
+            android:name=".screens.chat.DisplayUsersActivity"
+            android:exported="true" />
+        <activity
+            android:name=".screens.chat.GroupChatActivity"
             android:exported="true" />
         <activity
             android:name=".DoctorHome"

@@ -4,17 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/teal_100"
     tools:context=".PatientHome">
 
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
+    <android.widget.SearchView
+        android:id="@+id/searchPatient"
+        android:layout_margin="15dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="patient screen"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/custom_search"
+        android:focusable="false"
+        app:closeIcon="@drawable/ic_baseline_clear_24"
+        app:iconifiedByDefault="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:queryHint="بحث عن مواضيع ..."
+        app:searchHintIcon="@null"
+        app:searchIcon="@drawable/ic_search" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/all_topics_rv_patient"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="56dp"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchPatient" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

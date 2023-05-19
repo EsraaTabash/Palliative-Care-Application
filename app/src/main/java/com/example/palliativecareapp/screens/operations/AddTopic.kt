@@ -13,6 +13,9 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.util.Log
+import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
@@ -20,6 +23,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import com.example.palliativecareapp.DoctorHome
 import com.example.palliativecareapp.Models.Topic
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
@@ -32,7 +36,7 @@ import java.text.DateFormat
 import java.util.*
 
 
-class AddTopic : AppCompatActivity() {
+class  AddTopic : AppCompatActivity() {
     lateinit var uploadImage: ImageView
     lateinit var iconUploadImage: ImageView
     lateinit var saveButton: Button
@@ -45,8 +49,6 @@ class AddTopic : AppCompatActivity() {
     lateinit var reference: DatabaseReference
     lateinit var progressDialog: ProgressDialog
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_topic)
@@ -58,9 +60,11 @@ class AddTopic : AppCompatActivity() {
         uploadImage = findViewById(R.id.uploadImage)
         iconUploadImage = findViewById(R.id.iconUploadImage)
         uploadDescription = findViewById(R.id.uploadDescription);
-        uploadName = findViewById(R.id.uploadName);
-        uploadContent = findViewById(R.id.uploadContent);
-        saveButton = findViewById(R.id.saveButton);
+        uploadName = findViewById(R.id.uploadName)
+        uploadContent = findViewById(R.id.uploadContent)
+        saveButton = findViewById(R.id.saveButton)
+
+
         val activityResultLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
@@ -71,6 +75,7 @@ class AddTopic : AppCompatActivity() {
                 Toast.makeText(this, "No Image Selected", Toast.LENGTH_SHORT).show()
             }
         }
+
         uploadImage.setOnClickListener {
             val photoPicker = Intent(Intent.ACTION_PICK)
             photoPicker.type = "image/*"
@@ -96,6 +101,7 @@ class AddTopic : AppCompatActivity() {
                 }
             }
         }
+
     fun saveData() {
         val storageReference = FirebaseStorage.getInstance().reference.child("topicsLogo/topicLogoId"+ UUID.randomUUID().toString())
         val builder = AlertDialog.Builder(this)

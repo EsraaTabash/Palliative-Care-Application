@@ -36,8 +36,6 @@ class SignupPart3 : AppCompatActivity() {
     var userMiddleName:String? =""
     var userId:Int =2
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup_part3)
@@ -188,6 +186,5 @@ class SignupPart3 : AppCompatActivity() {
 //        ref = FirebaseDatabase.getInstance().getReference()
 //        ref.child("user").child(uid).setValue(UserRef(name,email,uid,id))
 //    }
-
 
 }
