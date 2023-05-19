@@ -16,6 +16,7 @@
         <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/drawable/ic_baseline_clear_24.xml" value="0.26205128205128203" />
         <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.25794871794871793" />
         <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.25794871794871793" />
+        <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/drawable/ic_group.xml" value="0.278125" />
         <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/drawable/ic_round_visibility_off_24.xml" value="0.25794871794871793" />
         <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/drawable/ic_search.xml" value="0.25794871794871793" />
         <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/drawable/logo.xml" value="0.26614583333333336" />
@@ -24,14 +25,20 @@
         <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/drawable/search_background.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/font/font.xml" value="0.28020833333333334" />
         <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/layout/activity_add_topic.xml" value="0.25" />
+        <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/layout/activity_chat.xml" value="0.24583333333333332" />
+        <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/layout/activity_display_groups.xml" value="0.24583333333333332" />
+        <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/layout/activity_display_users.xml" value="0.24583333333333332" />
         <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/layout/activity_doctor_chat.xml" value="0.25" />
         <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/layout/activity_doctor_home.xml" value="0.264" />
+        <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/layout/activity_group_chat.xml" value="0.24583333333333332" />
         <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/layout/activity_messaging_doctor.xml" value="0.25" />
         <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/layout/activity_messaging_patient.xml" value="0.25" />
+        <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/layout/activity_patient_chat.xml" value="0.215625" />
         <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/layout/activity_patient_home.xml" value="0.25" />
-        <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/layout/activity_read_topic.xml" value="0.25" />
+        <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/layout/activity_profile.xml" value="0.264" />
+        <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/layout/activity_read_topic.xml" value="0.4" />
         <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/layout/activity_signup.xml" value="0.2359375" />
         <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/layout/activity_signup_part1.xml" value="0.264" />
         <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/layout/activity_signup_part2.xml" value="0.264" />
@@ -39,10 +46,16 @@
         <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/layout/activity_signup_type.xml" value="0.264" />
         <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/layout/activity_splash.xml" value="0.2" />
         <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/layout/activity_update_topic.xml" value="0.25" />
+        <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/layout/activity_video_topic.xml" value="0.24583333333333332" />
         <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/layout/doctor_side_item.xml" value="0.25" />
+        <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/layout/group_chat_message_item.xml" value="0.24583333333333332" />
         <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/layout/patient_side_item.xml" value="0.25" />
         <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/layout/progress_layout.xml" value="0.234375" />
+        <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/layout/receive_message_chat_side_item.xml" value="0.24583333333333332" />
+        <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/layout/sent_message_chat_side_item.xml" value="0.24583333333333332" />
         <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/layout/topic_item.xml" value="0.4" />
+        <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/layout/topic_itemPatient.xml" value="0.25" />
+        <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/layout/topic_item_patient.xml" value="0.25" />
         <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/layout/user_chat_item.xml" value="0.25" />
         <entry key="..\:/Users/Esraa/MCCmoblie_cloud_computing/palliativecareapp/app/src/main/res/menu/action_bar.xml" value="0.1" />
       </map>

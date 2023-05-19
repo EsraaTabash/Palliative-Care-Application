@@ -7,11 +7,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.*
+import androidx.activity.result.contract.ActivityResultContracts
 import com.bumptech.glide.Glide
 import com.example.palliativecareapp.DoctorHome
 import com.example.palliativecareapp.Models.Topic
 import com.example.palliativecareapp.R
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_add_topic.*
 import kotlinx.android.synthetic.main.activity_read_topic.*
@@ -23,16 +26,42 @@ class UpdateTopic : AppCompatActivity() {
     lateinit var updateDescription: EditText
     lateinit var updateContent: EditText
     lateinit var updateImage: ImageView
+    lateinit var iconUpdateImage: ImageView
+
     lateinit var db: FirebaseFirestore
     var uri: Uri? = null
     var imageURL: String? = null
 
+    lateinit var top:Topic
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_topic)
-
+        db = Firebase.firestore
         updateButton=findViewById(R.id.updateButton)
+        updateImage = findViewById(R.id.updateImage)
+        iconUpdateImage = findViewById(R.id.iconUpdateImage)
+        top = intent.getParcelableExtra<Topic>("topic")!!
+        val activityResultLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == RESULT_OK) {
+                val data = result.data
+                uri = data?.data
+                updateImage.setImageURI(uri)
+            } else {
+                Toast.makeText(this, "No Image Selected", Toast.LENGTH_SHORT).show()
+            }
+        }
+        updateImage.setOnClickListener {
+            val photoPicker = Intent(Intent.ACTION_PICK)
+            photoPicker.type = "image/*"
+            activityResultLauncher.launch(photoPicker)
+        }
+        iconUpdateImage.setOnClickListener {
+            val photoPicker = Intent(Intent.ACTION_PICK)
+            photoPicker.type = "image/*"
+            activityResultLauncher.launch(photoPicker)
+        }
 
         val intent = intent.extras
         if (intent!= null) {
@@ -47,6 +76,7 @@ class UpdateTopic : AppCompatActivity() {
                 .load(intent.getString("Image"))
                 .into(updateImage)
         }
+
         updateButton.setOnClickListener {
             saveData()
         }
@@ -67,32 +97,39 @@ class UpdateTopic : AppCompatActivity() {
                 val urlImage = uriTask.result
                 imageURL = urlImage.toString()
                 updateData()
-                dialog.dismiss()
+                //dialog.dismiss()
                 Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
-
             }.addOnFailureListener {
-                dialog.dismiss()
+               // dialog.dismiss()
             }
-        }
-    }
-    fun updateData() {
-        val id = UUID.randomUUID().toString()
-        val name = updateName.text.toString().trim()
-        val desc = updateDescription.text.toString().trim()
-        val content = uploadContent.text.toString().trim()
-        val newTopic = HashMap<String,Any>()
-        newTopic["id"] = id
-        newTopic["Name"] = name
-        newTopic["Description"] = desc
-        newTopic["Content"] = content
-        newTopic["Logo"] = imageURL.toString()
-//         newTopic = Topic(id,imageURL.toString(), name, desc, content)
-        db.collection("topics")
-            .document("")
-            .update(newTopic)
-            .addOnCompleteListener {
-                Toast.makeText(this, "update ok", Toast.LENGTH_SHORT).show()
-            }
-    }
 
-}
+
+    }}
+    fun updateData() {
+        db.collection("topics").whereEqualTo("name", top.Name).get()
+            .addOnSuccessListener { querySnapshot ->
+                val iid = UUID.randomUUID().toString()
+                val name = updateName.text.toString().trim()
+                val desc = updateDescription.text.toString().trim()
+                val content = updateContent.text.toString().trim()
+                val newTopic = HashMap<String, Any>()
+                newTopic["id"] = iid
+                newTopic["name"] = name
+                newTopic["description"] = desc
+                newTopic["content"] = content
+                newTopic["logo"] = imageURL.toString()
+                //newTopic = Topic(imageURL.toString(), name, desc, content)
+                db.collection("topics")
+                    .document(querySnapshot.documents[0].id)
+                    .update(newTopic)
+                    .addOnCompleteListener {
+                        Toast.makeText(this, "update ok", Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this, DoctorHome::class.java))
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(this, "update failed", Toast.LENGTH_SHORT).show()
+
+                    }
+            }
+    }
+    }

@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
     <item android:id="@+id/message"
         android:gravity="end"
         android:title="msg"
         android:icon="@drawable/mssg"
         app:showAsAction="always" />
+    <item android:id="@+id/profile"
+    android:gravity="end"
+    android:title="profile"
+    android:icon="@drawable/ic_baseline_person_24"
+    app:showAsAction="always" />
     <item android:id="@+id/sort"
-        android:gravity="end"
-        android:title="sort"
-        android:icon="@drawable/ic_baseline_sort_24"
-        app:showAsAction="always" />
-    <item android:id="@+id/logout"
-        android:gravity="end"
-        android:title="logout"
-        android:icon="@drawable/ic_baseline_exit_to_app_24"
-        app:showAsAction="always" />
+    android:gravity="end"
+    android:title="sort"
+    android:icon="@drawable/ic_baseline_sort_24"
+    app:showAsAction="always" />
+
 </menu>
