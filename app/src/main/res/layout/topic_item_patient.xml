@@ -55,5 +55,24 @@
                   android:layout_height="wrap_content"/>
 
       </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="end"
+
+        android:paddingHorizontal="10dp"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/followTopic"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/ic_baseline_favorite_border_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -42,6 +42,7 @@
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/updateImage"
                     app:strokeColor="@color/teal_100"
+                    android:layout_gravity="center"
                     app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
                     android:layout_height="250dp"
                     android:src="@drawable/ic_launcher_background"
