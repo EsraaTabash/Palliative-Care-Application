@@ -6,6 +6,9 @@ import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
@@ -18,12 +21,10 @@ import com.example.palliativecareapp.RefreshListener
 import com.example.palliativecareapp.screens.operations.ReadTopic
 import com.example.palliativecareapp.screens.operations.UpdateTopic
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.topic_item.view.*
 import com.google.android.gms.tasks.OnFailureListener
 
 import com.google.android.gms.tasks.OnSuccessListener
-
-
+import org.w3c.dom.Text
 
 
 class TopicsAdapter(var activity: Activity, var data: ArrayList<Topic>, private var refreshListener:RefreshListener,)
@@ -37,9 +38,9 @@ class TopicsAdapter(var activity: Activity, var data: ArrayList<Topic>, private 
         refreshListener = listener
     }
     class myViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val name=itemView.topic_name
-        val img=itemView.topic_logo
-        val description=itemView.topic_description
+        val name=itemView.findViewById<TextView>(R.id.topic_name)
+        val img=itemView.findViewById<ImageView>(R.id.topic_logo)
+        val description=itemView.findViewById<TextView>(R.id.topic_description)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): myViewHolder {
@@ -72,14 +73,14 @@ class TopicsAdapter(var activity: Activity, var data: ArrayList<Topic>, private 
 //            intent.putExtra("id",data[position].id)
 //            activity.startActivity(intent)
         }
-        holder.itemView.hideTopic.setOnClickListener {
+        holder.itemView.findViewById<Button>(R.id.hideTopic).setOnClickListener {
             holder.itemView.visibility = View.GONE
             val layoutParams = holder.itemView.layoutParams as RecyclerView.LayoutParams
             layoutParams.height = 0
             layoutParams.width = 0
             holder.itemView.layoutParams = layoutParams
         }
-        holder.itemView.deleteTopic.setOnClickListener {
+        holder.itemView.findViewById<Button>(R.id.deleteTopic).setOnClickListener {
             val options = arrayOf("الــغــاء","حـــــذف")
             val dialog = androidx.appcompat.app.AlertDialog.Builder(activity, R.style.CustomAlertDialogStyle)
             dialog.setTitle("حــذف المــوضــوع")
@@ -105,13 +106,14 @@ class TopicsAdapter(var activity: Activity, var data: ArrayList<Topic>, private 
                     }
                 }.show()
         }
-        holder.itemView.editTopic.setOnClickListener {
+        holder.itemView.findViewById<Button>(R.id.editTopic).setOnClickListener {
             val intent = Intent(activity, UpdateTopic::class.java)
             intent.putExtra("Image", data[position].Logo)
             intent.putExtra("Description", data[position].Description)
             intent.putExtra("Name", data[position].Name)
             intent.putExtra("Content", data[position].Content)
             intent.putExtra("topic",data[position])
+            intent.putExtra("id", data[position].id)
             activity.startActivity(intent)
         }
 

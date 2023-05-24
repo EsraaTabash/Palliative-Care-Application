@@ -126,10 +126,37 @@ class UpdateTopic : AppCompatActivity() {
             .addOnSuccessListener {
                 Toast.makeText(this, "Update Successful", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, DoctorHome::class.java))
+
+                getTokensInTopic(top.id)
+
             }
             .addOnFailureListener {
                 Toast.makeText(this, "Update Failed", Toast.LENGTH_SHORT).show()
             }
     }
+
+
+    private fun getTokensInTopic(topicId:String){
+
+        val topic = Firebase.firestore.collection("topics")
+
+        topic.get().addOnSuccessListener {
+            for (document in it){
+                if (document.id == topicId){
+                    Firebase.firestore.collection("topics").document(document.id).collection("tokens").get()
+                        .addOnSuccessListener {
+                            for (d in it){
+//                                sendFCMMessage(d.data["token"].toString(),"تم تحديث موضوع${document.data["name"]} ")
+
+                                ReadTopic.sendFCMMessage(d.data["token"].toString(),"تم تحديث موضوع${document.data["name"]}")
+
+                            }
+                        }
+                }
+            }
+        }
+    }
+
+
 
 }

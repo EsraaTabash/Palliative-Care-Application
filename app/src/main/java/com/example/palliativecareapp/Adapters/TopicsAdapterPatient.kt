@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
@@ -19,11 +21,9 @@ import com.example.palliativecareapp.RefreshListener
 import com.example.palliativecareapp.screens.operations.ReadTopic
 import com.example.palliativecareapp.screens.operations.UpdateTopic
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.topic_item.view.*
 import com.google.android.gms.tasks.OnFailureListener
 
 import com.google.android.gms.tasks.OnSuccessListener
-import kotlinx.android.synthetic.main.topic_item_patient.view.*
 
 
 class TopicsAdapterPatient(var activity: Activity, var data: ArrayList<Topic>, private var refreshListener:RefreshListener,)
@@ -37,9 +37,9 @@ class TopicsAdapterPatient(var activity: Activity, var data: ArrayList<Topic>, p
         refreshListener = listener
     }
     class myViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val name=itemView.topic_name_patient
-        val img=itemView.topic_logo_patient
-        val description=itemView.topic_description_patient
+        val name=itemView.findViewById<TextView>(R.id.topic_name_patient)
+        val img=itemView.findViewById<ImageView>(R.id.topic_logo_patient)
+        val description=itemView.findViewById<TextView>(R.id.topic_description_patient)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): myViewHolder {
@@ -57,9 +57,9 @@ class TopicsAdapterPatient(var activity: Activity, var data: ArrayList<Topic>, p
             .load(data[position].Logo)
             .apply(requestOptions)
             .into(holder.img)
-        holder.itemView.followTopic.setOnClickListener {
+        holder.itemView.findViewById<Button>(R.id.followTopic).setOnClickListener {
             //Toast.makeText(activity, "clicked", Toast.LENGTH_SHORT).show()
-            val button = holder.itemView.followTopic as Button
+            val button = holder.itemView.findViewById<Button>(R.id.followTopic) as Button
             val currentDrawable = button.background
             val originalDrawable = activity.getDrawable(R.drawable.ic_baseline_favorite_border_24)
                 button.setBackgroundResource(R.drawable.ic_baseline_favorite_24)
@@ -73,6 +73,7 @@ class TopicsAdapterPatient(var activity: Activity, var data: ArrayList<Topic>, p
             intent.putExtra("Name", data[position].Name)
             intent.putExtra("Content", data[position].Content)
             intent.putExtra("Video", data[position].Video)
+            intent.putExtra("id", data[position].id)
             activity.startActivity(intent)
             //selectContentCategory(data[position].id.toString(),data[position].name!!)
 //            val intent = Intent(activity, Details::class.java)
