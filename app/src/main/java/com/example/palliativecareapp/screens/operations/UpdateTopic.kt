@@ -13,8 +13,6 @@ import com.example.palliativecareapp.Models.Topic
 import com.example.palliativecareapp.R
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import kotlinx.android.synthetic.main.activity_add_topic.*
-import kotlinx.android.synthetic.main.activity_read_topic.*
 import java.util.*
 
 class UpdateTopic : AppCompatActivity() {
