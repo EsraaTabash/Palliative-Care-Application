@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.palliativecareapp.Adapters.TopicsAdapter
 import com.example.palliativecareapp.Models.Topic
+import com.example.palliativecareapp.Notification.NotificationDoctorActivity
 import com.example.palliativecareapp.screens.Profile
 import com.example.palliativecareapp.screens.chat.DisplayUsersActivity
 
@@ -194,7 +195,8 @@ class DoctorHome : AppCompatActivity(),RefreshListener,TopicLoadListener{
                         }
                     }.show()
             }
-           // R.id.message -> startActivity(Intent(this, DisplayUsersActivity::class.java))
+            R.id.notification -> startActivity(Intent(this, NotificationDoctorActivity::class.java))
+
         }
         return super.onOptionsItemSelected(item)
     }

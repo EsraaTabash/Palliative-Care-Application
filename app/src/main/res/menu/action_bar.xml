@@ -12,11 +12,16 @@
     android:gravity="end"
     android:title="profile"
     android:icon="@drawable/ic_baseline_person_24"
-    app:showAsAction="always" />
+    app:showAsAction="never" />
     <item android:id="@+id/sort"
     android:gravity="end"
     android:title="sort"
     android:icon="@drawable/ic_baseline_sort_24"
     app:showAsAction="always" />
+    <item android:id="@+id/notification"
+        android:gravity="end"
+        android:title="notification"
+        app:showAsAction="never" />
+
 
 </menu>
