@@ -6,6 +6,7 @@ import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -62,6 +63,9 @@ class TopicsAdapter(var activity: Activity, var data: ArrayList<Topic>, private 
             intent.putExtra("Description", data[position].Description)
             intent.putExtra("Name", data[position].Name)
             intent.putExtra("Content", data[position].Content)
+            intent.putExtra("Video", data[position].Video)
+            Toast.makeText(activity,data[position].Video.toString(), Toast.LENGTH_SHORT).show()
+
             activity.startActivity(intent)
             //selectContentCategory(data[position].id.toString(),data[position].name!!)
 //            val intent = Intent(activity, Details::class.java)
@@ -84,7 +88,7 @@ class TopicsAdapter(var activity: Activity, var data: ArrayList<Topic>, private 
                         dialogInterface.dismiss()
                     }else if (i == 1){
                         val db = FirebaseFirestore.getInstance()
-                        val documentRef = db.collection("topics").document(data[position].id)
+                        val documentRef = db.collection("topics").document(data[position].id.toString())
                         documentRef.delete()
                         db.collection("topics")
                             .document(data[position].Name!!)

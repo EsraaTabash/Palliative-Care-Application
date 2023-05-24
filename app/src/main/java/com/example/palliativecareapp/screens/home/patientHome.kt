@@ -129,6 +129,7 @@ class PatientHome : AppCompatActivity() ,RefreshListener,TopicLoadListener{
                         document.getString("name"),
                         document.getString("description"),
                         document.getString("content"),
+                        document.getString("video"),
                     )
                     for(e in displayList){
                         if (topicModel.Name.equals(e.Name)) {
@@ -139,6 +140,7 @@ class PatientHome : AppCompatActivity() ,RefreshListener,TopicLoadListener{
                         displayList.add(topicModel)
                         TopicsList.add(topicModel)
                     }
+                   // Toast.makeText(this, document.getString("video").toString(), Toast.LENGTH_SHORT).show()
 
                     Log.e("esr","load : diaplay list : ${document.getString("name").toString()}")
 

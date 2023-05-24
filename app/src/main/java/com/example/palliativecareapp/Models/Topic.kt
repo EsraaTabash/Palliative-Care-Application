@@ -4,18 +4,24 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class Topic(
-    var id:String,
+    var id:String = "",
     var Logo: String? = "",
     var Name: String? = "",
     var Description: String? = "",
     var Content: String? = "",
-    ):Parcelable {
+    var Video: String? = "",
+    //var InfographicUrls: List<Float>? = null
+):Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
-        parcel.readString()
+        parcel.readString(),
+        parcel.readString(),
+//        mutableListOf<Float>().apply {
+//            parcel.readList(this, Float::class.java.classLoader)
+//        }
     ) {
     }
 
@@ -25,6 +31,9 @@ data class Topic(
         parcel.writeString(Name)
         parcel.writeString(Description)
         parcel.writeString(Content)
+        parcel.writeString(Video)
+    //    parcel.writeList(InfographicUrls?.toList())
+
     }
 
     override fun describeContents(): Int {

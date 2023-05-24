@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".screens.operations.AddInfoGraph">
+
+    <LinearLayout
+        android:id="@+id/l1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/details1input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_input"
+            android:fontFamily="@font/baloo_bhaijaan_regular"
+            android:gravity="start|center_vertical"
+            android:text=" ◀  عدد حـــالات الشفـــاء :"
+            android:layout_margin="10dp"
+            android:layout_weight="2"
+            android:padding="7dp"
+            android:textColor="@color/teal_400"
+            android:textSize="18dp"
+          />
+
+        <EditText
+            android:id="@+id/num1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_input"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/baloo_bhaijaan_regular"
+            android:gravity="start|center_vertical"
+            android:hint="الرقم 1"
+            android:layout_weight="1"
+            android:padding="7dp"
+            android:inputType="number"
+            android:textColor="@color/teal_400"
+            android:textSize="18dp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/l2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/l1">
+
+        <EditText
+            android:id="@+id/details2input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:background="@drawable/custom_input"
+            android:fontFamily="@font/baloo_bhaijaan_regular"
+            android:gravity="start|center_vertical"
+            android:text="◀  عدد الوفيــات :  "
+            android:layout_margin="10dp"
+            android:padding="7dp"
+            android:textColor="@color/teal_400"
+            android:textSize="18dp" />
+
+        <EditText
+            android:id="@+id/num2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:background="@drawable/custom_input"
+            android:fontFamily="@font/baloo_bhaijaan_regular"
+            android:gravity="start|center_vertical"
+            android:hint="الرقم 2"
+            android:inputType="number"
+            android:padding="7dp"
+            android:textColor="@color/teal_400"
+            android:textSize="18dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/l3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/l2">
+
+        <EditText
+            android:id="@+id/details3input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:background="@drawable/custom_input"
+            android:fontFamily="@font/baloo_bhaijaan_regular"
+            android:gravity="start|center_vertical"
+            android:text="◀  عدد المصابيــن :"
+            android:layout_margin="10dp"
+            android:padding="7dp"
+            android:textColor="@color/teal_400"
+            android:textSize="18dp" />
+
+        <EditText
+            android:id="@+id/num3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:background="@drawable/custom_input"
+            android:fontFamily="@font/baloo_bhaijaan_regular"
+            android:gravity="start|center_vertical"
+            android:hint="الرقم3"
+            android:inputType="number"
+            android:padding="7dp"
+            android:textColor="@color/teal_400"
+            android:textSize="18dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/saveinfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/custom_input"
+        android:fontFamily="@font/baloo_bhaijaan_bold"
+        android:hint="اضــافة الرسم البياني  "
+        android:inputType="textMultiLine"
+        android:layout_gravity="center"
+        android:textSize="18dp"
+        android:paddingHorizontal="90dp"
+        android:paddingVertical="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/l3" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

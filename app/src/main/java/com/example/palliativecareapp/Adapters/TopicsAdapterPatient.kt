@@ -6,6 +6,8 @@ import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -55,12 +57,22 @@ class TopicsAdapterPatient(var activity: Activity, var data: ArrayList<Topic>, p
             .load(data[position].Logo)
             .apply(requestOptions)
             .into(holder.img)
+        holder.itemView.followTopic.setOnClickListener {
+            //Toast.makeText(activity, "clicked", Toast.LENGTH_SHORT).show()
+            val button = holder.itemView.followTopic as Button
+            val currentDrawable = button.background
+            val originalDrawable = activity.getDrawable(R.drawable.ic_baseline_favorite_border_24)
+                button.setBackgroundResource(R.drawable.ic_baseline_favorite_24)
+                //Toast.makeText(activity, "cl", Toast.LENGTH_SHORT).show()
+
+        }
         holder.itemView.setOnClickListener{
             val intent = Intent(activity, ReadTopic::class.java)
             intent.putExtra("Image", data[position].Logo)
             intent.putExtra("Description", data[position].Description)
             intent.putExtra("Name", data[position].Name)
             intent.putExtra("Content", data[position].Content)
+            intent.putExtra("Video", data[position].Video)
             activity.startActivity(intent)
             //selectContentCategory(data[position].id.toString(),data[position].name!!)
 //            val intent = Intent(activity, Details::class.java)

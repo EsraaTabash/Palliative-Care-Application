@@ -141,6 +141,7 @@ class DoctorHome : AppCompatActivity(),RefreshListener,TopicLoadListener{
                             document.getString("name"),
                             document.getString("description"),
                             document.getString("content"),
+                            document.getString("video"),
                         )
                     for(e in displayList){
                         if (topicModel.Name.equals(e.Name)) {
