@@ -1,7 +1,10 @@
 package com.example.palliativecareapp
 import android.content.Intent
+import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableStringBuilder
 import android.util.Log
 import android.view.*
 import android.widget.SearchView
@@ -14,7 +17,6 @@ import com.example.palliativecareapp.Models.Topic
 import com.example.palliativecareapp.Notification.NotificationDoctorActivity
 import com.example.palliativecareapp.screens.Profile
 import com.example.palliativecareapp.screens.chat.DisplayUsersActivity
-
 import com.example.palliativecareapp.screens.operations.AddTopic
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.*
@@ -136,14 +138,25 @@ class DoctorHome : AppCompatActivity(),RefreshListener,TopicLoadListener{
             .get()
             .addOnSuccessListener { result ->
                 for (document in result) {
-                      val topicModel =  Topic(
+                    val infographicUrls = document.get("infographicUrls") as? ArrayList<*>
+                    val infographicStringList = infographicUrls?.mapNotNull {
+                        it.toString()
+                    }
+                    if (infographicStringList != null) {
+                        for(e in infographicStringList){
+                            //Toast.makeText(this,e.toString()+"home" , Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
+                    val topicModel =  Topic(
                             document.id,
                             document.getString("logo"),
                             document.getString("name"),
                             document.getString("description"),
                             document.getString("content"),
                             document.getString("video"),
-                        )
+                            infographicStringList
+                    )
                     for(e in displayList){
                         if (topicModel.Name.equals(e.Name)) {
                             isDuplicate = true

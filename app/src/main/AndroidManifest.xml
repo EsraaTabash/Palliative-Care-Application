@@ -37,6 +37,7 @@
         <activity
             android:name=".screens.operations.AddInfoGraph"
             android:exported="true" />
+
         <activity
             android:name=".screens.operations.InfoGraphTopic"
             android:exported="true" />
