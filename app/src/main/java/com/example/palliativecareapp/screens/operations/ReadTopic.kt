@@ -11,9 +11,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.example.palliativecareapp.Models.Topic
 import com.example.palliativecareapp.R
 import com.example.palliativecareapp.screens.chat.CommentActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
@@ -31,6 +36,8 @@ class ReadTopic : AppCompatActivity() {
     lateinit var fabPatientVideo: FloatingActionButton
     lateinit var fabPatientInfograph: FloatingActionButton
     lateinit var topicFollowing: FloatingActionButton
+    private lateinit var analytics: FirebaseAnalytics
+
     val rotateOpen: Animation by lazy {
         AnimationUtils.loadAnimation(this, R.anim.rotate_open_anim)
     }
@@ -44,11 +51,17 @@ class ReadTopic : AppCompatActivity() {
         AnimationUtils.loadAnimation(this, R.anim.to_right_anim)
     }
     var clicked = false
+    var auth = Firebase.auth
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_read_topic)
+        analytics = Firebase.analytics
+        analytics.logEvent("ReadActivity") {
+            param("userId", auth.uid.toString());
+        }
         fabPatient = findViewById(R.id.fabPatient)
         fabPatientComment = findViewById(R.id.fabPatientComment)
         fabPatientVideo = findViewById(R.id.fabPatientVideo)
@@ -62,17 +75,22 @@ class ReadTopic : AppCompatActivity() {
         val intent = intent.extras
         if (intent != null) {
             val detailName = findViewById<TextView>(R.id.detailName)
-            detailName.text = intent.getString("Name")
+            var name = intent.getString("Name")
+            detailName.text = name
             val detailDescription = findViewById<TextView>(R.id.detailDescription)
-            detailDescription.text = intent.getString("Description")
+            var des = intent.getString("Description")
+            detailDescription.text = des
             val detailContent = findViewById<TextView>(R.id.detailContent)
-            detailContent.text = intent.getString("Content")
+            var content =  intent.getString("Content")
+            detailContent.text = content
             val detailLogo = findViewById<ImageView>(R.id.detailImage)
             Glide.with(this)
                 .load(intent.getString("Image"))
                 .into(detailLogo)
             val detailVideo = intent.getString("Video")
             //Toast.makeText(this, intent.getString("Video").toString(), Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, intent.getStringArrayList("Info").toString()+2, Toast.LENGTH_SHORT).show()
+
             fabPatientComment.setOnClickListener {
                 val i = Intent(this,CommentActivity::class.java)
                 val name = intent?.getString("Name")
@@ -87,6 +105,10 @@ class ReadTopic : AppCompatActivity() {
             }
             fabPatientInfograph.setOnClickListener {
                 val i = Intent(this, InfoGraphTopic::class.java)
+               // var obj = Topic(intent.getString("id"),intent.getString("Image"),name,des,content,detailVideo,intent.getFloatArray("Info"))
+               // var obj = Topic(intent.getString("id"),intent.getString("Image"),name,des,content,detailVideo)
+                var info = intent.getStringArrayList("Info")
+                i.putStringArrayListExtra("Info", info)
                 startActivity(i)
 
             }
@@ -221,7 +243,7 @@ class ReadTopic : AppCompatActivity() {
     companion object{
         fun sendFCMMessage(token: String,text:String) {
 //        val serverKey = "AAAAaf_-VAE:APA91bG53Ra9kT-QzNMGMX76rXgUt6jX7kxFferAqvG6IdpijFqhJVmhdzTQ1kjVNOE0RlqqVSGNNXuq6a0GJJcbACjZrwFtlgMVI00q54zmDAFFIRInOMXT9mv7MbWNEH2ovirpi0WP" // Replace with your FCM server key
-            val serverKey = "AAAA75lh4V4:APA91bH2QmpdRF8JJ_mssKSC1CRAMyc58MxLGiMIK7BPS-lYCVGfaV1lGFClffkvoeVeVAzFu8wg5TofCp2pNX253Xgpu2V4q_GeoWV_xnA48kfwXlcP8c-2dulPSg2v9Jhr1Hl45G8P" // Replace with your FCM server key
+            val serverKey = "AAAAUXgHW8k:APA91bHh76HkuqRoiQEKt2PK3Jk1AqLTqbmEP3gPCPqLeX3RaR0rdLHAn9Pvs1qL8wZNkPERrsfhv4n3_WtheZk9LKZdwgtbSJDHjydzLnFIo3M4UsVCjR6lax1MosVYuMz4FK20qa7l" // Replace with your FCM server key
             val url = URL("https://fcm.googleapis.com/fcm/send")
             GlobalScope.launch {
                 val connection = url.openConnection() as HttpURLConnection
