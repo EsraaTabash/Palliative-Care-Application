@@ -112,12 +112,13 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-       android:layout_marginTop="60dp"
         android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/baloo_bhaijaan_regular"
         android:hint="هل قمــت بالتسجيــل مسبقــاً؟"
         android:padding="10dp"
         android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signupPatientButton" />
 
@@ -125,13 +126,14 @@
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/gradient_btn"
         android:fontFamily="@font/baloo_bhaijaan_bold"
         android:paddingVertical="10dp"
         android:text="تسجيــل دخــول"
         android:textColor="@color/teal_300"
         android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/signupDoctorButton" />
 

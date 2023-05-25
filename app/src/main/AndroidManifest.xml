@@ -8,7 +8,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
@@ -25,15 +24,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Palliativecareapp">
-
+        <activity
+            android:name=".Notification.SpecificNotificationActivity"
+            android:exported="false" />
         <activity
             android:name=".screens.chat.CommentActivity"
             android:exported="false" />
-
         <activity
             android:name=".Notification.NotificationDoctorActivity"
             android:exported="false" />
-
         <activity
             android:name=".screens.operations.AddInfoGraph"
             android:exported="true" />
@@ -112,7 +111,6 @@
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             </intent-filter>
         </service>
-
     </application>
 
 </manifest>

@@ -16,8 +16,8 @@ import com.example.palliativecareapp.screens.chat.ChatActivity
 class UserChatAdapter(val context:Context, val userList:ArrayList<UserRef>):RecyclerView.Adapter<UserChatAdapter.UserChatViewHolder>() {
 
     class UserChatViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){
-        val txt_view_user_chat = itemView.findViewById<TextView>(R.id.txt_view_user_chat)
-        val user_chat_img = itemView.findViewById<ImageView>(R.id.user_chat_img)
+        val txt_view_user_chat = itemView.findViewById<TextView>(R.id.txt_view_notification)
+        val user_chat_img = itemView.findViewById<ImageView>(R.id.NotificatioUserImage)
     }
 
 

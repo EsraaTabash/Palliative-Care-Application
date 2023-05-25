@@ -14,7 +14,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/user_chat_img"
+                android:id="@+id/NotificatioUserImage"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="16dp"
@@ -27,7 +27,7 @@
                 app:srcCompat="@drawable/account_circle" />
 
             <TextView
-                android:id="@+id/txt_view_user_chat"
+                android:id="@+id/txt_view_notification"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
@@ -35,9 +35,9 @@
                 android:fontFamily="@font/baloo_bhaijaan_medium"
                 android:textColor="#302F2F"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="@+id/user_chat_img"
-                app:layout_constraintStart_toEndOf="@+id/user_chat_img"
-                app:layout_constraintTop_toTopOf="@+id/user_chat_img" />
+                app:layout_constraintBottom_toBottomOf="@+id/NotificatioUserImage"
+                app:layout_constraintStart_toEndOf="@+id/NotificatioUserImage"
+                app:layout_constraintTop_toTopOf="@+id/NotificatioUserImage" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.appcompat.widget.LinearLayoutCompat>

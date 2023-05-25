@@ -1,5 +1,6 @@
 package com.example.palliativecareapp.Notification
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -7,10 +8,10 @@ import android.widget.Button
 import android.widget.EditText
 import com.example.palliativecareapp.R
 import org.json.JSONObject
-import java.io.IOException
-import javax.security.auth.callback.Callback
 
 import android.widget.Toast
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -27,13 +28,14 @@ class NotificationDoctorActivity : AppCompatActivity() {
 
         val notificationTitle=  findViewById<EditText>(R.id.notificationTitle)
         val notificationBody = findViewById<EditText>(R.id.notificationBody)
-        val notificationButton = findViewById<Button>(R.id.notificationButton)
-        notificationButton.setOnClickListener {
+        val sendAllButton = findViewById<Button>(R.id.sendAllButton)
+        val SendspecificButton = findViewById<Button>(R.id.SendspecificNotificationButton)
+        sendAllButton.setOnClickListener {
             val title = notificationTitle.text.toString()
             val message = notificationBody.text.toString()
 //            val recipientToken = findViewById<EditText>(R.id.etToken).text.toString()
 
-            FirebaseMessaging.getInstance().subscribeToTopic(topic)
+//            FirebaseMessaging.getInstance().subscribeToTopic(topic)
 
             if(title.isNotEmpty() && message.isNotEmpty() ) {
 
@@ -45,8 +47,16 @@ class NotificationDoctorActivity : AppCompatActivity() {
                     val token = task.result
                     Log.e("byn",token.toString())
 
+                    Firebase.firestore.collection("tokens").get().addOnSuccessListener {
+                        for (document in it){
+                            val t = document.data["token"].toString()
+                            sendFCMMessage(t, title, message)
+                        }
+                    }
+
 //                    sendFCMMessage(token.toString(), title, message)
-                    sendFCMMessage(topic, title, message)
+                    NotificationDoctorActivity.sendFCMMessage(token.toString(), "تم الارسال بنجاح", "تم ارسال الرسالة بنجاح")
+
                 }
 
 
@@ -57,43 +67,55 @@ class NotificationDoctorActivity : AppCompatActivity() {
 
         }
 
+        SendspecificButton.setOnClickListener {
+            val i = Intent(this,SpecificNotificationActivity::class.java)
+            i.putExtra("title",notificationTitle.text.toString())
+            i.putExtra("body",notificationBody.text.toString())
+            startActivity(i)
+
+        }
+
     }
 
 
+    companion object{
+        fun sendFCMMessage(token: String, title: String, message: String) {
+            val serverKey = "AAAA75lh4V4:APA91bH2QmpdRF8JJ_mssKSC1CRAMyc58MxLGiMIK7BPS-lYCVGfaV1lGFClffkvoeVeVAzFu8wg5TofCp2pNX253Xgpu2V4q_GeoWV_xnA48kfwXlcP8c-2dulPSg2v9Jhr1Hl45G8P" // Replace with your FCM server key
 
-    fun sendFCMMessage(token: String, title: String, message: String) {
-        val serverKey = "AAAA75lh4V4:APA91bH2QmpdRF8JJ_mssKSC1CRAMyc58MxLGiMIK7BPS-lYCVGfaV1lGFClffkvoeVeVAzFu8wg5TofCp2pNX253Xgpu2V4q_GeoWV_xnA48kfwXlcP8c-2dulPSg2v9Jhr1Hl45G8P" // Replace with your FCM server key
+            val url = URL("https://fcm.googleapis.com/fcm/send")
+            GlobalScope.launch {
+                val connection = url.openConnection() as HttpURLConnection
+                connection.requestMethod = "POST"
+                connection.setRequestProperty("Content-Type", "application/json")
+                connection.setRequestProperty("Authorization", "key=$serverKey")
+                connection.doOutput = true
 
-        val url = URL("https://fcm.googleapis.com/fcm/send")
-        GlobalScope.launch {
-        val connection = url.openConnection() as HttpURLConnection
-        connection.requestMethod = "POST"
-        connection.setRequestProperty("Content-Type", "application/json")
-        connection.setRequestProperty("Authorization", "key=$serverKey")
-        connection.doOutput = true
+                val json = JSONObject()
+                val dataJson = JSONObject()
+                dataJson.put("message", message)
+                dataJson.put("title", title)
+                json.put("to", token)
+                json.put("data", dataJson)
 
-        val json = JSONObject()
-        val dataJson = JSONObject()
-        dataJson.put("message", message)
-        json.put("to", token)
-        json.put("data", dataJson)
+                val outputStream = connection.outputStream
+                val writer = BufferedWriter(OutputStreamWriter(outputStream))
+                writer.write(json.toString())
+                writer.flush()
 
-        val outputStream = connection.outputStream
-        val writer = BufferedWriter(OutputStreamWriter(outputStream))
-        writer.write(json.toString())
-        writer.flush()
+                val responseCode = connection.responseCode
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    // Message sent successfully
+                } else {
+                    // Handle failure
+                }
 
-        val responseCode = connection.responseCode
-        if (responseCode == HttpURLConnection.HTTP_OK) {
-            // Message sent successfully
-        } else {
-            // Handle failure
-        }
+                writer.close()
+                outputStream.close()
+                connection.disconnect()
+            }}
 
-        writer.close()
-        outputStream.close()
-        connection.disconnect()
-    }}
+    }
+
 
 
 }

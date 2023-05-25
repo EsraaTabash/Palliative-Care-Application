@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="40dp"
+
+    android:padding="10dp"
+
     tools:context=".Notification.NotificationDoctorActivity">
 
 
@@ -39,18 +41,31 @@
         app:layout_constraintTop_toBottomOf="@+id/notificationTitle" />
 
     <Button
-        android:id="@+id/notificationButton"
+        android:id="@+id/sendAllButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/gradient_btn"
         android:fontFamily="@font/baloo_bhaijaan_bold"
-        android:text="أرسل "
-        android:textSize="24dp"
+        android:text="إرسال إلى الجميع"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/notificationBody" />
+
+    <Button
+        android:id="@+id/SendspecificNotificationButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/gradient_btn"
+        android:fontFamily="@font/baloo_bhaijaan_bold"
+        android:text="إرسال إلى البعض"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sendAllButton" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

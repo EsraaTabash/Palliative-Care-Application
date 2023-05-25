@@ -7,9 +7,6 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.google.firebase.analytics.FirebaseAnalytics
-import com.google.firebase.analytics.ktx.analytics
-import com.google.firebase.analytics.ktx.logEvent
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
@@ -18,6 +15,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.auth.User
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
+import kotlinx.android.synthetic.main.group_chat_message_item.*
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
@@ -178,7 +177,7 @@ class SignupPart3 : AppCompatActivity() {
 //                    addUserToDatabase("$userFirstName $userLastName",email,auth.currentUser?.uid!!,id)
                     Toast.makeText(this, "Authentication success.", Toast.LENGTH_SHORT).show()
                     addNewUser(id,auth.currentUser?.uid!!,userFirstName,userMiddleName,userLastName,userAddress,userPhone,userBirthday,email,pass)
-
+                    addUserToken(auth.currentUser?.uid!!,"$userFirstName $userLastName",email,id)
                     //Toast.makeText(this, userUid, Toast.LENGTH_SHORT).show()
                 } else {
                     Log.d("tag", "createUserWithEmail:failure", task.exception)
@@ -194,5 +193,27 @@ class SignupPart3 : AppCompatActivity() {
 //        ref = FirebaseDatabase.getInstance().getReference()
 //        ref.child("user").child(uid).setValue(UserRef(name,email,uid,id))
 //    }
+
+
+    private fun addUserToken(uid:String, name:String,useremail:String, id: Int){
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+            if(!task.isSuccessful()){
+                Log.e("byn","faild to get token")
+                return@addOnCompleteListener
+            }
+            val token = task.result.toString()
+            Log.e("byn",token)
+            val userToken = hashMapOf<String,Any>(
+                "uid" to uid,
+                "token" to token,
+                "name" to name,
+                "email" to useremail,
+                "id" to id
+            )
+            Firebase.firestore.collection("tokens").add(userToken)
+
+
+        }
+    }
 
 }
