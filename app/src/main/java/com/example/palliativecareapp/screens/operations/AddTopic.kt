@@ -13,6 +13,10 @@ import com.bumptech.glide.Glide
 import com.example.palliativecareapp.DoctorHome
 import com.example.palliativecareapp.Models.Topic
 import com.example.palliativecareapp.R
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -40,16 +44,19 @@ class AddTopic : AppCompatActivity() {
     private var num1: Float = 20F
     private var num2: Float = 80F
     private var num3: Float = 100F
-
+    private lateinit var analytics: FirebaseAnalytics
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_topic)
-
+        var auth = Firebase.auth
         db = FirebaseFirestore.getInstance()
         progressDialog = ProgressDialog(this)
         progressDialog.setMessage("Loading")
         progressDialog.setCancelable(false)
-
+        analytics = Firebase.analytics
+        analytics.logEvent("AddActivity") {
+            param("userId", auth.uid.toString());
+        }
         uploadImage = findViewById(R.id.uploadImage)
         uploadVideo = findViewById(R.id.uploadVideo)
         iconUploadImage = findViewById(R.id.iconUploadImage)
