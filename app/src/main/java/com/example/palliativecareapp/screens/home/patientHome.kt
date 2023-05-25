@@ -120,9 +120,20 @@ class PatientHome : AppCompatActivity() ,RefreshListener,TopicLoadListener{
     }
     private fun loadTopicsFromFirebase() {
         db.collection("topics")
+            .whereEqualTo("hidden", false)
             .get()
             .addOnSuccessListener { result ->
                 for (document in result) {
+                    val infographicUrls = document.get("infographicUrls") as? ArrayList<*>
+                    val infographicStringList = infographicUrls?.mapNotNull {
+                        it.toString()
+                    }
+                    if (infographicStringList != null) {
+                        for(e in infographicStringList){
+                            //Toast.makeText(this,e.toString()+"home" , Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
                     val topicModel =  Topic(
                         document.id,
                         document.getString("logo"),
@@ -130,25 +141,23 @@ class PatientHome : AppCompatActivity() ,RefreshListener,TopicLoadListener{
                         document.getString("description"),
                         document.getString("content"),
                         document.getString("video"),
+                        infographicStringList
                     )
                     for(e in displayList){
                         if (topicModel.Name.equals(e.Name)) {
                             isDuplicate = true
                             break
-                        }}
+                        }
+                    }
                     if (!isDuplicate) {
                         displayList.add(topicModel)
                         TopicsList.add(topicModel)
                     }
-                   // Toast.makeText(this, document.getString("video").toString(), Toast.LENGTH_SHORT).show()
 
                     Log.e("esr","load : diaplay list : ${document.getString("name").toString()}")
-
-                    //Log.e("TAG", "${document.id} => ${document.data}")
                 }
 
                 topicListener.onTopicLodSuccess(displayList)
-
             }
             .addOnFailureListener { exception ->
                 Log.e("TAG", "Error getting documents.", exception)

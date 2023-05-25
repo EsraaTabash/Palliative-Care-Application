@@ -17,14 +17,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
+        <TextView
             android:id="@+id/details1input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_input"
             android:fontFamily="@font/baloo_bhaijaan_regular"
             android:gravity="start|center_vertical"
-            android:text=" ◀  عدد حـــالات الشفـــاء :"
+            android:text=" ◀  نسبــة الشفـــاء :"
             android:layout_margin="10dp"
             android:layout_weight="2"
             android:padding="7dp"
@@ -59,7 +59,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/l1">
 
-        <EditText
+        <TextView
             android:id="@+id/details2input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
             android:background="@drawable/custom_input"
             android:fontFamily="@font/baloo_bhaijaan_regular"
             android:gravity="start|center_vertical"
-            android:text="◀  عدد الوفيــات :  "
+            android:text="◀ نسبــة الوفيــات :  "
             android:layout_margin="10dp"
             android:padding="7dp"
             android:textColor="@color/teal_400"
@@ -99,7 +99,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/l2">
 
-        <EditText
+        <TextView
             android:id="@+id/details3input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -107,7 +107,7 @@
             android:background="@drawable/custom_input"
             android:fontFamily="@font/baloo_bhaijaan_regular"
             android:gravity="start|center_vertical"
-            android:text="◀  عدد المصابيــن :"
+            android:text="◀  نسبــة الاصــابة :"
             android:layout_margin="10dp"
             android:padding="7dp"
             android:textColor="@color/teal_400"
