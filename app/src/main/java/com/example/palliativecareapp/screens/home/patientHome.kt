@@ -15,6 +15,10 @@ import com.example.palliativecareapp.Adapters.TopicsAdapterPatient
 import com.example.palliativecareapp.Models.Topic
 import com.example.palliativecareapp.screens.Profile
 import com.example.palliativecareapp.screens.chat.DisplayUsersActivity
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
@@ -34,6 +38,8 @@ class PatientHome : AppCompatActivity() ,RefreshListener,TopicLoadListener{
     lateinit var eventListener: ValueEventListener
     lateinit var topicListener: TopicLoadListener
     var isDuplicate = false
+    private lateinit var analytics: FirebaseAnalytics
+    var auth = Firebase.auth
 
     override fun onRefresh() {
         Log.e("esr","on refresh")
@@ -45,6 +51,10 @@ class PatientHome : AppCompatActivity() ,RefreshListener,TopicLoadListener{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_patient_home)
+        analytics = Firebase.analytics
+        analytics.logEvent("GetTopicPatientActivity") {
+            param("userId", auth.uid.toString());
+        }
         refreshListener = this
         topicListener = this
         val el :ArrayList<Topic> = ArrayList()

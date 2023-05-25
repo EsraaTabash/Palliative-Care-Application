@@ -7,6 +7,11 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.palliativecareapp.R
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 
 class AddInfoGraph : AppCompatActivity() {
@@ -14,10 +19,16 @@ class AddInfoGraph : AppCompatActivity() {
     private lateinit var num2: EditText
     private lateinit var num3: EditText
     private lateinit var saveBtn: Button
-
+    private lateinit var analytics: FirebaseAnalytics
+    var auth = Firebase.auth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_info_graph)
+
+        analytics = Firebase.analytics
+        analytics.logEvent("AddInfoGraphActivty") {
+            param("userId", auth.uid.toString());
+        }
 
         num1 = findViewById(R.id.num1)
         num2 = findViewById(R.id.num2)

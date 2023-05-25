@@ -15,6 +15,10 @@ import com.example.palliativecareapp.Models.Topic
 import com.example.palliativecareapp.R
 import com.example.palliativecareapp.screens.chat.CommentActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
@@ -32,6 +36,8 @@ class ReadTopic : AppCompatActivity() {
     lateinit var fabPatientVideo: FloatingActionButton
     lateinit var fabPatientInfograph: FloatingActionButton
     lateinit var topicFollowing: FloatingActionButton
+    private lateinit var analytics: FirebaseAnalytics
+
     val rotateOpen: Animation by lazy {
         AnimationUtils.loadAnimation(this, R.anim.rotate_open_anim)
     }
@@ -45,11 +51,17 @@ class ReadTopic : AppCompatActivity() {
         AnimationUtils.loadAnimation(this, R.anim.to_right_anim)
     }
     var clicked = false
+    var auth = Firebase.auth
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_read_topic)
+        analytics = Firebase.analytics
+        analytics.logEvent("ReadActivity") {
+            param("userId", auth.uid.toString());
+        }
         fabPatient = findViewById(R.id.fabPatient)
         fabPatientComment = findViewById(R.id.fabPatientComment)
         fabPatientVideo = findViewById(R.id.fabPatientVideo)
