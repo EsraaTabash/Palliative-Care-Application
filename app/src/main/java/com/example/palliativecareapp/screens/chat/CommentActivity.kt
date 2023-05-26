@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.palliativecareapp.Adapters.CommentAdapter
 import com.example.palliativecareapp.Adapters.GroupChatAdapter
 import com.example.palliativecareapp.Models.GroupMessage
+import com.example.palliativecareapp.Models.MyAnalytics
 import com.example.palliativecareapp.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.ktx.auth
@@ -23,6 +24,9 @@ class CommentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_comment)
+
+        MyAnalytics.screenTrack("CommentActivity","Comment")
+
         val name = intent.getStringExtra("Name")
         val ref = FirebaseDatabase.getInstance().getReference()
         val uid = Firebase.auth.uid

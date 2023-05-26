@@ -12,6 +12,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.palliativecareapp.Adapters.TopicsAdapterPatient
+import com.example.palliativecareapp.Models.MyAnalytics
 import com.example.palliativecareapp.Models.Topic
 import com.example.palliativecareapp.screens.Profile
 import com.example.palliativecareapp.screens.chat.DisplayUsersActivity
@@ -56,6 +57,7 @@ class PatientHome : AppCompatActivity() ,RefreshListener,TopicLoadListener{
         recyclerView.layoutManager = LinearLayoutManager(this)
         searchView.clearFocus()
 
+        MyAnalytics.screenTrack("PatientHomeActivity","PatientHome")
 
         val builder = AlertDialog.Builder(this)
         builder.setCancelable(false)

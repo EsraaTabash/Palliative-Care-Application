@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.palliativecareapp.Adapters.TopicsAdapter
+import com.example.palliativecareapp.Models.MyAnalytics
 import com.example.palliativecareapp.Models.Topic
 import com.example.palliativecareapp.Notification.NotificationDoctorActivity
 import com.example.palliativecareapp.screens.Profile
@@ -65,6 +66,8 @@ class DoctorHome : AppCompatActivity(),RefreshListener,TopicLoadListener{
         db = Firebase.firestore
         recyclerView.layoutManager = LinearLayoutManager(this)
         searchView.clearFocus()
+
+        MyAnalytics.screenTrack("DoctorHomeActivity","DoctorHome")
 
 
         val builder = AlertDialog.Builder(this)
