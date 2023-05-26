@@ -21,7 +21,8 @@
     <item android:id="@+id/notification"
         android:gravity="end"
         android:title="الاشــعــارات"
-        app:showAsAction="never" />
+        app:showAsAction="never"
+        />
 
 
 </menu>

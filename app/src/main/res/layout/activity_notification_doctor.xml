@@ -44,7 +44,7 @@
         android:id="@+id/sendAllButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/gradient_btn"
         android:fontFamily="@font/baloo_bhaijaan_bold"
         android:text="إرسال إلى الجميع"

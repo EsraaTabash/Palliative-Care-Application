@@ -177,6 +177,8 @@ class PatientHome : AppCompatActivity() ,RefreshListener,TopicLoadListener{
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.action_bar,menu)
+        menu?.findItem(R.id.notification)?.isVisible = false
+        menu?.findItem(R.id.profile)?.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
         return super.onCreateOptionsMenu(menu)
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
