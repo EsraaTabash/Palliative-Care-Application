@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.palliativecareapp.Adapters.MessageAdapter
 import com.example.palliativecareapp.Models.MessageChatData
+import com.example.palliativecareapp.Models.MyAnalytics
 import com.example.palliativecareapp.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
@@ -23,6 +24,8 @@ class ChatActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
+
+        MyAnalytics.screenTrack("ChatActivity","Chat")
 
         val recycler_view_chat = findViewById<RecyclerView>(R.id.recycler_view_chat)
         val edit_text_chat = findViewById<EditText>(R.id.edit_text_chat)
