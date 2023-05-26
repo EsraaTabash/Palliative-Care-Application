@@ -4,35 +4,51 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import android.widget.Toast
+import com.example.palliativecareapp.Models.Topic
 import com.example.palliativecareapp.R
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_info_graph_topic.*
 
 class InfoGraphTopic : AppCompatActivity() {
-    lateinit var d1 :TextView
-    lateinit var d2 :TextView
-    lateinit var d3 :TextView
+    private lateinit var d1: TextView
+    private lateinit var d2: TextView
+    private lateinit var d3: TextView
+    private lateinit var analytics: FirebaseAnalytics
+    var auth = Firebase.auth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_info_graph_topic)
+
+        analytics = Firebase.analytics
+        analytics.logEvent("ShowInfoGraphActivty") {
+            param("userId", auth.uid.toString());
+        }
+
+        val array = intent.getStringArrayListExtra("Info")
+        val donutSet = array?.map { it.toFloat() } ?: listOf(20F, 80F, 100F)
+
+        array?.forEach {
+            //Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+        }
+
         d1 = findViewById(R.id.details1)
         d2 = findViewById(R.id.details2)
         d3 = findViewById(R.id.details3)
-        donutChart.donutColors= intArrayOf(
+        donutChart.donutColors = intArrayOf(
             Color.parseColor("#b3e0dc"),
             Color.parseColor("#81cdc6"),
-            Color.parseColor("#4fb9af"),
+            Color.parseColor("#4fb9af")
         )
         donutChart.animation.duration = 1000L
         donutChart.animate(donutSet)
-            d1.setText("◀  عدد حـــالات الشفـــاء :   ${donutSet[0]}")
-            d2.setText("◀  عدد الوفيــات :   ${donutSet[1]}")
-            d3.setText("◀  عدد المصابيــن :   ${donutSet[2]}")
-        }
-    companion object{
-        private val donutSet = listOf(
-            20F,
-            80F,
-            100F
-        )
+        d1.text = "◀  نسبــة الشفـــاء :   ${donutSet[0]}"
+        d2.text = "◀  نسبــة الوفيــات :   ${donutSet[1]}"
+        d3.text = "◀  نسبــة المصابيــن :   ${donutSet[2]}"
     }
 }

@@ -7,7 +7,6 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.example.palliativecareapp.Models.MyAnalytics
 import com.example.palliativecareapp.screens.operations.ReadTopic
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -77,9 +76,6 @@ class SignupPart3 : AppCompatActivity() {
             } else {
                 createUser(email.text.toString(), password.text.toString(),userId)
                 Toast.makeText(this, "button clicked", Toast.LENGTH_SHORT).show()
-
-                MyAnalytics.clickTrack()
-
 //                addNewUser(
 //                    userId,
 //                    userUid,

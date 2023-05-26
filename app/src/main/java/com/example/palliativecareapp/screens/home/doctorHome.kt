@@ -1,7 +1,10 @@
 package com.example.palliativecareapp
 import android.content.Intent
+import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableStringBuilder
 import android.util.Log
 import android.view.*
 import android.widget.SearchView
@@ -15,9 +18,12 @@ import com.example.palliativecareapp.Models.Topic
 import com.example.palliativecareapp.Notification.NotificationDoctorActivity
 import com.example.palliativecareapp.screens.Profile
 import com.example.palliativecareapp.screens.chat.DisplayUsersActivity
-
 import com.example.palliativecareapp.screens.operations.AddTopic
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
@@ -45,6 +51,8 @@ class DoctorHome : AppCompatActivity(),RefreshListener,TopicLoadListener{
      lateinit var eventListener: ValueEventListener
      lateinit var topicListener: TopicLoadListener
      var isDuplicate = false
+    private lateinit var analytics: FirebaseAnalytics
+    var auth = Firebase.auth
 
     override fun onRefresh() {
         Log.e("esr","on refresh")
@@ -55,6 +63,10 @@ class DoctorHome : AppCompatActivity(),RefreshListener,TopicLoadListener{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_doctor_home)
+        analytics = Firebase.analytics
+        analytics.logEvent("GetTopicDoctorActivity") {
+            param("userId", auth.uid.toString());
+        }
         refreshListener = this
         topicListener = this
         val el :ArrayList<Topic> = ArrayList()
@@ -139,14 +151,25 @@ class DoctorHome : AppCompatActivity(),RefreshListener,TopicLoadListener{
             .get()
             .addOnSuccessListener { result ->
                 for (document in result) {
-                      val topicModel =  Topic(
+                    val infographicUrls = document.get("infographicUrls") as? ArrayList<*>
+                    val infographicStringList = infographicUrls?.mapNotNull {
+                        it.toString()
+                    }
+                    if (infographicStringList != null) {
+                        for(e in infographicStringList){
+                            //Toast.makeText(this,e.toString()+"home" , Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
+                    val topicModel =  Topic(
                             document.id,
                             document.getString("logo"),
                             document.getString("name"),
                             document.getString("description"),
                             document.getString("content"),
                             document.getString("video"),
-                        )
+                            infographicStringList
+                    )
                     for(e in displayList){
                         if (topicModel.Name.equals(e.Name)) {
                             isDuplicate = true

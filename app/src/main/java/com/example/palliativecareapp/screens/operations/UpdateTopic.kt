@@ -12,6 +12,10 @@ import com.bumptech.glide.Glide
 import com.example.palliativecareapp.DoctorHome
 import com.example.palliativecareapp.Models.Topic
 import com.example.palliativecareapp.R
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -26,16 +30,21 @@ class UpdateTopic : AppCompatActivity() {
     lateinit var updateContent: EditText
     lateinit var updateImage: ImageView
     lateinit var iconUpdateImage: ImageView
+    private lateinit var analytics: FirebaseAnalytics
 
     lateinit var db: FirebaseFirestore
     var uri: Uri? = null
     var imageURL: String? = null
-
+    var auth = Firebase.auth
     lateinit var top: Topic
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_topic)
+        analytics = Firebase.analytics
+        analytics.logEvent("UpdateActivity") {
+            param("userId", auth.uid.toString());
+        }
         db = Firebase.firestore
         updateButton = findViewById(R.id.updateButton)
         updateImage = findViewById(R.id.updateImage)

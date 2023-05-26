@@ -11,7 +11,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.bumptech.glide.Glide
-import com.example.palliativecareapp.Models.MyAnalytics
 import com.example.palliativecareapp.R
 import com.example.palliativecareapp.screens.chat.CommentActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -59,8 +58,6 @@ class ReadTopic : AppCompatActivity() {
             onButtonClicked()
         }
 
-        MyAnalytics.screenTrack("ReadTopicActivity","ReadTopic")
-
         var isFirstImage = true
         val intent = intent.extras
         if (intent != null) {
@@ -81,23 +78,20 @@ class ReadTopic : AppCompatActivity() {
                 val name = intent?.getString("Name")
                 i.putExtra("Name",name.toString())
                 startActivity(i)
-                MyAnalytics.clickTrack()
             }
             fabPatientVideo.setOnClickListener {
                 val i = Intent(this, VideoTopic::class.java)
                 Toast.makeText(this, detailVideo.toString(), Toast.LENGTH_SHORT).show()
                 i.putExtra("videoUrl",detailVideo.toString())
                 startActivity(i)
-                MyAnalytics.clickTrack()
             }
             fabPatientInfograph.setOnClickListener {
                 val i = Intent(this, InfoGraphTopic::class.java)
                 startActivity(i)
-                MyAnalytics.clickTrack()
 
             }
             topicFollowing.setOnClickListener {
-                MyAnalytics.clickTrack()
+
                 val topicid =intent.getString("id")
                 if (isFirstImage){
                     topicFollowing.setImageResource(R.drawable.ic_favorite_fill)

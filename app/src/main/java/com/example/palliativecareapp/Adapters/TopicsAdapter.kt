@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import com.example.palliativecareapp.Models.MyAnalytics
 import com.example.palliativecareapp.Models.Topic
 import com.example.palliativecareapp.R
 import com.example.palliativecareapp.RefreshListener
@@ -60,7 +59,6 @@ class TopicsAdapter(var activity: Activity, var data: ArrayList<Topic>, private 
             .apply(requestOptions)
             .into(holder.img)
         holder.itemView.setOnClickListener{
-            MyAnalytics.clickTrack()
             val intent = Intent(activity, ReadTopic::class.java)
             intent.putExtra("Image", data[position].Logo)
             intent.putExtra("Description", data[position].Description)
@@ -81,7 +79,6 @@ class TopicsAdapter(var activity: Activity, var data: ArrayList<Topic>, private 
             layoutParams.height = 0
             layoutParams.width = 0
             holder.itemView.layoutParams = layoutParams
-            MyAnalytics.clickTrack()
         }
         holder.itemView.findViewById<Button>(R.id.deleteTopic).setOnClickListener {
             val options = arrayOf("الــغــاء","حـــــذف")
@@ -106,7 +103,6 @@ class TopicsAdapter(var activity: Activity, var data: ArrayList<Topic>, private 
                                 // Handle any errors
                             })
                         dialogInterface.dismiss()
-                        MyAnalytics.clickTrack()
                     }
                 }.show()
         }
@@ -119,7 +115,6 @@ class TopicsAdapter(var activity: Activity, var data: ArrayList<Topic>, private 
             intent.putExtra("topic",data[position])
             intent.putExtra("id", data[position].id)
             activity.startActivity(intent)
-            MyAnalytics.clickTrack()
         }
 
     }

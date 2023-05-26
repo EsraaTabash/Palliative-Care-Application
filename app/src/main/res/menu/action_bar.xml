@@ -10,7 +10,7 @@
         app:showAsAction="always" />
     <item android:id="@+id/profile"
     android:gravity="end"
-    android:title="الملف الشخصي"
+    android:title="المــلف الشخصــي"
     android:icon="@drawable/ic_baseline_person_24"
     app:showAsAction="never" />
     <item android:id="@+id/sort"
@@ -20,7 +20,7 @@
     app:showAsAction="always" />
     <item android:id="@+id/notification"
         android:gravity="end"
-        android:title="الاشعارات"
+        android:title="الاشــعــارات"
         app:showAsAction="never" />
 
 

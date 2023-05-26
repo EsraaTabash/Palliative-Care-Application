@@ -11,6 +11,11 @@ import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.upstream.DefaultDataSource
 import com.google.android.exoplayer2.util.MimeTypes
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_video_topic.*
 
 class VideoTopic : AppCompatActivity() {
@@ -19,10 +24,18 @@ class VideoTopic : AppCompatActivity() {
     private var currentWindow = 0
     private var playBackPosition: Long = 0
     private lateinit var videoUrl: String
+    private lateinit var analytics: FirebaseAnalytics
+    var auth = Firebase.auth
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_video_topic)
+        var auth = Firebase.auth
+        analytics = Firebase.analytics
+        analytics.logEvent("PlayVideoActivty") {
+            param("userId", auth.uid.toString());
+        }
         supportActionBar?.hide()
         videoUrl = intent?.getStringExtra("videoUrl").toString()
         Toast.makeText(this, videoUrl.toString(), Toast.LENGTH_SHORT).show()

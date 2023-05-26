@@ -16,6 +16,10 @@ import com.example.palliativecareapp.Models.MyAnalytics
 import com.example.palliativecareapp.Models.Topic
 import com.example.palliativecareapp.screens.Profile
 import com.example.palliativecareapp.screens.chat.DisplayUsersActivity
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
@@ -35,6 +39,8 @@ class PatientHome : AppCompatActivity() ,RefreshListener,TopicLoadListener{
     lateinit var eventListener: ValueEventListener
     lateinit var topicListener: TopicLoadListener
     var isDuplicate = false
+    private lateinit var analytics: FirebaseAnalytics
+    var auth = Firebase.auth
 
     override fun onRefresh() {
         Log.e("esr","on refresh")
@@ -46,6 +52,10 @@ class PatientHome : AppCompatActivity() ,RefreshListener,TopicLoadListener{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_patient_home)
+        analytics = Firebase.analytics
+        analytics.logEvent("GetTopicPatientActivity") {
+            param("userId", auth.uid.toString());
+        }
         refreshListener = this
         topicListener = this
         val el :ArrayList<Topic> = ArrayList()
@@ -122,9 +132,20 @@ class PatientHome : AppCompatActivity() ,RefreshListener,TopicLoadListener{
     }
     private fun loadTopicsFromFirebase() {
         db.collection("topics")
+            .whereEqualTo("hidden", false)
             .get()
             .addOnSuccessListener { result ->
                 for (document in result) {
+                    val infographicUrls = document.get("infographicUrls") as? ArrayList<*>
+                    val infographicStringList = infographicUrls?.mapNotNull {
+                        it.toString()
+                    }
+                    if (infographicStringList != null) {
+                        for(e in infographicStringList){
+                            //Toast.makeText(this,e.toString()+"home" , Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
                     val topicModel =  Topic(
                         document.id,
                         document.getString("logo"),
@@ -132,25 +153,23 @@ class PatientHome : AppCompatActivity() ,RefreshListener,TopicLoadListener{
                         document.getString("description"),
                         document.getString("content"),
                         document.getString("video"),
+                        infographicStringList
                     )
                     for(e in displayList){
                         if (topicModel.Name.equals(e.Name)) {
                             isDuplicate = true
                             break
-                        }}
+                        }
+                    }
                     if (!isDuplicate) {
                         displayList.add(topicModel)
                         TopicsList.add(topicModel)
                     }
-                   // Toast.makeText(this, document.getString("video").toString(), Toast.LENGTH_SHORT).show()
 
                     Log.e("esr","load : diaplay list : ${document.getString("name").toString()}")
-
-                    //Log.e("TAG", "${document.id} => ${document.data}")
                 }
 
                 topicListener.onTopicLodSuccess(displayList)
-
             }
             .addOnFailureListener { exception ->
                 Log.e("TAG", "Error getting documents.", exception)
