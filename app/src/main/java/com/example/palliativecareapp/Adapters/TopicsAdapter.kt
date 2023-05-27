@@ -73,14 +73,7 @@ class TopicsAdapter(var activity: Activity, var data: ArrayList<Topic>, private 
             intent.putExtra("Name", data[position].Name)
             intent.putExtra("Content", data[position].Content)
             intent.putExtra("Video", data[position].Video)
-            val infographicUrls = data[position].InfographicUrls
-            if (infographicUrls != null) {
-                val infographicList = infographicUrls.toList()
-                val infographicArrayList = ArrayList(infographicList)
-                intent.putStringArrayListExtra("Info", infographicArrayList)
-            }
-            //Toast.makeText(activity,data[position].Video.toString(), Toast.LENGTH_SHORT).show()
-            //Toast.makeText(activity,data[position].InfographicUrls.toString(), Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity,data[position].Video.toString(), Toast.LENGTH_SHORT).show()
 
             activity.startActivity(intent)
 //            val intent = Intent(activity, Details::class.java)
@@ -93,6 +86,11 @@ class TopicsAdapter(var activity: Activity, var data: ArrayList<Topic>, private 
             val db = FirebaseFirestore.getInstance()
             db.collection("topics").document(topicId)
                 .update("hidden", true)
+            holder.itemView.visibility = View.GONE
+            val layoutParams = holder.itemView.layoutParams as RecyclerView.LayoutParams
+            layoutParams.height = 0
+            layoutParams.width = 0
+            holder.itemView.layoutParams = layoutParams
         }
         holder.itemView.findViewById<Button>(R.id.deleteTopic).setOnClickListener {
             selectContentTopics(data[position].id,"delete"+data[position].Name!!)

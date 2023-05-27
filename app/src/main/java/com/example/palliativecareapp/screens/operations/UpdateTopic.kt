@@ -157,7 +157,7 @@ class UpdateTopic : AppCompatActivity() {
                             for (d in it){
 //                                sendFCMMessage(d.data["token"].toString(),"تم تحديث موضوع${document.data["name"]} ")
 
-                                ReadTopic.sendFCMMessage(d.data["token"].toString(),"تم تحديث موضوع${document.data["name"]}")
+                                ReadTopic.sendFCMMessage(d.data["token"].toString()," تم تحديث موضوع ${document.data["name"]}")
 
                             }
                         }

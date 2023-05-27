@@ -37,6 +37,7 @@ class NotificationDoctorActivity : AppCompatActivity() {
 
 //            FirebaseMessaging.getInstance().subscribeToTopic(topic)
 
+                    val tokenList = ArrayList<String>()
             if(title.isNotEmpty() && message.isNotEmpty() ) {
 
                 FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
@@ -50,21 +51,31 @@ class NotificationDoctorActivity : AppCompatActivity() {
                     Firebase.firestore.collection("tokens").get().addOnSuccessListener {
                         for (document in it){
                             val t = document.data["token"].toString()
+                            Log.e("tokens",t)
+                            tokenList.add(t)
+                            Log.e("tokens","$tokenList")
                             sendFCMMessage(t, title, message)
                         }
+
                     }
+                    Log.e("byn","$tokenList")
+
+
 
 //                    sendFCMMessage(token.toString(), title, message)
-                    NotificationDoctorActivity.sendFCMMessage(token.toString(), "تم الارسال بنجاح", "تم ارسال الرسالة بنجاح")
+//                    sendFCMMessage(token.toString(), "تم الارسال بنجاح", "تم ارسال الرسالة بنجاح")
 
                 }
-
 
             } else {
                 Toast.makeText(this, "Please enter title and message", Toast.LENGTH_SHORT).show()
             }
 
-
+//            Log.e("byn","$tokenList")
+//            for (t in tokenList){
+//                sendFCMMessage(t, title, message)
+//
+//            }
         }
 
         SendspecificButton.setOnClickListener {
