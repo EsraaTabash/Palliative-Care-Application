@@ -24,6 +24,10 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.android.gms.tasks.OnFailureListener
 
 import com.google.android.gms.tasks.OnSuccessListener
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 
 
 class TopicsAdapterPatient(var activity: Activity, var data: ArrayList<Topic>, private var refreshListener:RefreshListener,)
@@ -31,7 +35,7 @@ class TopicsAdapterPatient(var activity: Activity, var data: ArrayList<Topic>, p
 //    private val distinctData = data.distinct()
 //    private val dData = ArrayList(distinctData)
 
-    //var analytics: FirebaseAnalytics =  Firebase.analytics
+     var analytics: FirebaseAnalytics =  Firebase.analytics
     //var db: FirebaseFirestore = Firebase.firestore
     fun setRefreshListener(listener: RefreshListener) {
         refreshListener = listener
@@ -75,7 +79,7 @@ class TopicsAdapterPatient(var activity: Activity, var data: ArrayList<Topic>, p
             intent.putExtra("Video", data[position].Video)
             intent.putExtra("id", data[position].id)
             activity.startActivity(intent)
-            //selectContentCategory(data[position].id.toString(),data[position].name!!)
+             selectContentTopicsPatient(data[position].id,data[position].Name!!)
 //            val intent = Intent(activity, Details::class.java)
 //            intent.putExtra("id",data[position].id)
 //            activity.startActivity(intent)
@@ -85,6 +89,11 @@ class TopicsAdapterPatient(var activity: Activity, var data: ArrayList<Topic>, p
     override fun getItemCount(): Int {
         return data.size
     }
-
+    fun selectContentTopicsPatient(id:String,contentType:String){
+        analytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT) {
+            param(FirebaseAnalytics.Param.ITEM_ID, id);
+            param(FirebaseAnalytics.Param.CONTENT_TYPE,contentType);
+        }
+    }
 
 }

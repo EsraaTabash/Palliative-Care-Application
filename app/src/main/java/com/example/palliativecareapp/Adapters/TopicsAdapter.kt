@@ -24,6 +24,10 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.android.gms.tasks.OnFailureListener
 
 import com.google.android.gms.tasks.OnSuccessListener
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import org.w3c.dom.Text
 
 
@@ -32,33 +36,37 @@ class TopicsAdapter(var activity: Activity, var data: ArrayList<Topic>, private 
 //    private val distinctData = data.distinct()
 //    private val dData = ArrayList(distinctData)
 
-    //var analytics: FirebaseAnalytics =  Firebase.analytics
+    var analytics: FirebaseAnalytics = Firebase.analytics
+
     //var db: FirebaseFirestore = Firebase.firestore
     fun setRefreshListener(listener: RefreshListener) {
         refreshListener = listener
     }
+
     class myViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val name=itemView.findViewById<TextView>(R.id.topic_name)
-        val img=itemView.findViewById<ImageView>(R.id.topic_logo)
-        val description=itemView.findViewById<TextView>(R.id.topic_description)
+        val name = itemView.findViewById<TextView>(R.id.topic_name)
+        val img = itemView.findViewById<ImageView>(R.id.topic_logo)
+        val description = itemView.findViewById<TextView>(R.id.topic_description)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): myViewHolder {
-        val root= LayoutInflater.from(activity).inflate(R.layout.topic_item,parent,false)
+        val root = LayoutInflater.from(activity).inflate(R.layout.topic_item, parent, false)
         return myViewHolder(root)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: myViewHolder, position: Int) {
-        holder.name.text=data[position].Name
-        holder.description.text=data[position].Description
+        holder.name.text = data[position].Name
+        holder.description.text = data[position].Description
         var requestOptions = RequestOptions()
         requestOptions = requestOptions.transforms(RoundedCorners(50))
         Glide.with(activity)
             .load(data[position].Logo)
             .apply(requestOptions)
             .into(holder.img)
-        holder.itemView.setOnClickListener{
+        selectContentTopics(data[position].id, data[position].Name!!)
+        holder.itemView.setOnClickListener {
+            selectContentTopics(data[position].id,"clicked"+data[position].Name!!)
             val intent = Intent(activity, ReadTopic::class.java)
             intent.putExtra("Image", data[position].Logo)
             intent.putExtra("Description", data[position].Description)
@@ -75,27 +83,30 @@ class TopicsAdapter(var activity: Activity, var data: ArrayList<Topic>, private 
             //Toast.makeText(activity,data[position].InfographicUrls.toString(), Toast.LENGTH_SHORT).show()
 
             activity.startActivity(intent)
-            //selectContentCategory(data[position].id.toString(),data[position].name!!)
 //            val intent = Intent(activity, Details::class.java)
 //            intent.putExtra("id",data[position].id)
 //            activity.startActivity(intent)
         }
         holder.itemView.findViewById<Button>(R.id.hideTopic).setOnClickListener {
+            selectContentTopics(data[position].id,"hide"+data[position].Name!!)
             val topicId = data[position].id
             val db = FirebaseFirestore.getInstance()
             db.collection("topics").document(topicId)
                 .update("hidden", true)
         }
         holder.itemView.findViewById<Button>(R.id.deleteTopic).setOnClickListener {
-            val options = arrayOf("الــغــاء","حـــــذف")
-            val dialog = androidx.appcompat.app.AlertDialog.Builder(activity, R.style.CustomAlertDialogStyle)
+            selectContentTopics(data[position].id,"delete"+data[position].Name!!)
+            val options = arrayOf("الــغــاء", "حـــــذف")
+            val dialog =
+                androidx.appcompat.app.AlertDialog.Builder(activity, R.style.CustomAlertDialogStyle)
             dialog.setTitle("حــذف المــوضــوع")
-                .setItems(options){ dialogInterface,  i ->
-                    if (i == 0){
+                .setItems(options) { dialogInterface, i ->
+                    if (i == 0) {
                         dialogInterface.dismiss()
-                    }else if (i == 1){
+                    } else if (i == 1) {
                         val db = FirebaseFirestore.getInstance()
-                        val documentRef = db.collection("topics").document(data[position].id.toString())
+                        val documentRef =
+                            db.collection("topics").document(data[position].id.toString())
                         documentRef.delete()
                         db.collection("topics")
                             .document(data[position].Name!!)
@@ -113,20 +124,27 @@ class TopicsAdapter(var activity: Activity, var data: ArrayList<Topic>, private 
                 }.show()
         }
         holder.itemView.findViewById<Button>(R.id.editTopic).setOnClickListener {
+            selectContentTopics(data[position].id,"edit"+data[position].Name!!)
             val intent = Intent(activity, UpdateTopic::class.java)
             intent.putExtra("Image", data[position].Logo)
             intent.putExtra("Description", data[position].Description)
             intent.putExtra("Name", data[position].Name)
             intent.putExtra("Content", data[position].Content)
-            intent.putExtra("topic",data[position])
+            intent.putExtra("topic", data[position])
             intent.putExtra("id", data[position].id)
             activity.startActivity(intent)
         }
 
     }
+
     override fun getItemCount(): Int {
         return data.size
     }
 
-
+    fun selectContentTopics(id: String, contentType: String) {
+        analytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT) {
+            param(FirebaseAnalytics.Param.ITEM_ID, id);
+            param(FirebaseAnalytics.Param.CONTENT_TYPE, contentType);
+        }
+    }
 }

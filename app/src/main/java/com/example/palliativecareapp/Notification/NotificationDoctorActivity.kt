@@ -80,12 +80,12 @@ class NotificationDoctorActivity : AppCompatActivity() {
 
     companion object{
         fun sendFCMMessage(token: String, title: String, message: String) {
-            val serverKey = "AAAA75lh4V4:APA91bH2QmpdRF8JJ_mssKSC1CRAMyc58MxLGiMIK7BPS-lYCVGfaV1lGFClffkvoeVeVAzFu8wg5TofCp2pNX253Xgpu2V4q_GeoWV_xnA48kfwXlcP8c-2dulPSg2v9Jhr1Hl45G8P" // Replace with your FCM server key
+            val serverKey = "AAAAUXgHW8k:APA91bHh76HkuqRoiQEKt2PK3Jk1AqLTqbmEP3gPCPqLeX3RaR0rdLHAn9Pvs1qL8wZNkPERrsfhv4n3_WtheZk9LKZdwgtbSJDHjydzLnFIo3M4UsVCjR6lax1MosVYuMz4FK20qa7l" // Replace with your FCM server key
 
             val url = URL("https://fcm.googleapis.com/fcm/send")
             GlobalScope.launch {
                 val connection = url.openConnection() as HttpURLConnection
-                connection.requestMethod = "POST"
+                connection.requestMethod = "POS T"
                 connection.setRequestProperty("Content-Type", "application/json")
                 connection.setRequestProperty("Authorization", "key=$serverKey")
                 connection.doOutput = true
