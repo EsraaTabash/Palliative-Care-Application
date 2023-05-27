@@ -7,6 +7,10 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+
 import com.example.palliativecareapp.screens.operations.ReadTopic
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -43,10 +47,16 @@ class SignupPart3 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup_part3)
         FBFS = Firebase.firestore
+      auth = Firebase.auth
+        analytics = Firebase.analytics
+        analytics.logEvent("SignUpActivty") {
+            param("userId", auth.uid.toString());
+        }
+
         auth = Firebase.auth
 //
 //        list = ArrayList()
-////        userUid = auth.currentUser?.uid.toString()
+////      userUid = auth.currentUser?.uid.toString()
         supportActionBar?.hide()
         userId = intent.getIntExtra("id", 2)
         userFirstName = intent.getStringExtra("firstName")

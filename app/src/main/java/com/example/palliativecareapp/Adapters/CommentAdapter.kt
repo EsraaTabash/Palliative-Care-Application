@@ -15,10 +15,17 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.palliativecareapp.Models.GroupMessage
 import com.example.palliativecareapp.R
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 
 class CommentAdapter (val context: Context, val messageList:ArrayList<GroupMessage>):
     RecyclerView.Adapter<CommentAdapter.MyViewHolder>() {
+    var analytics: FirebaseAnalytics =  Firebase.analytics
+    var auth = Firebase.auth
 
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val comment_txt = itemView.findViewById<TextView>(R.id.group_chat_txt)
@@ -38,6 +45,7 @@ class CommentAdapter (val context: Context, val messageList:ArrayList<GroupMessa
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        selectContentComment(auth.currentUser!!.uid,holder.name_comment_writer_txt.text.toString())
 //         holder.layoutPosition
 //        val layoutParams = holder.layoutPosition = Gravity.START
         holder.group_message_layout.gravity = Gravity.START
@@ -46,11 +54,16 @@ class CommentAdapter (val context: Context, val messageList:ArrayList<GroupMessa
 //        holder.layout_content.setBackgroundColor(Color.LTGRAY)
 
         val currentMessage = messageList[position]
-      holder.comment_txt.text =
-                currentMessage.message
+      holder.comment_txt.text = currentMessage.message
             holder.name_comment_writer_txt.text = currentMessage.senderName
             holder.time_comment.text = currentMessage.timeStamp
             Log.d("msg", "current msg in adapter recieve ${currentMessage.message}")
             Log.d("msg", "current msg in adapter recieve text view ${holder.comment_txt.text}")
+    }
+    fun selectContentComment(id:String,contentType:String){
+        analytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT) {
+            param(FirebaseAnalytics.Param.ITEM_ID, id);
+            param(FirebaseAnalytics.Param.CONTENT_TYPE,contentType);
+        }
     }
 }
